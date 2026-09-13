@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Power Store | Recargas VIP</title>
+  <title>Power Store | Recargas Gamer Venezuela</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
@@ -12,39 +12,29 @@
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen pb-14 font-sans">
 
-  <!-- BARRA SUPERIOR -->
+  <!-- HEADER -->
   <header class="border-b border-slate-800 bg-slate-900/90 backdrop-blur sticky top-0 z-50 p-3">
-    <div class="max-w-5xl mx-auto flex items-center justify-between">
+    <div class="max-w-4xl mx-auto flex items-center justify-between">
       <div class="flex items-center gap-2 cursor-pointer" onclick="navigate('home')">
         <div class="w-9 h-9 rounded-xl bg-amber-500 text-black flex items-center justify-center font-black">
           <i class="fa-solid fa-bolt"></i>
         </div>
         <span class="text-xl font-black uppercase text-white">POWER <span class="text-amber-400">STORE</span></span>
       </div>
-
-      <div class="flex items-center gap-2">
-        <button onclick="openModal('calcModal')" class="px-2.5 py-1.5 rounded-lg bg-slate-800 text-amber-400 text-xs font-bold border border-slate-700">
-          <i class="fa-solid fa-calculator"></i> Tasa Bs
-        </button>
-        <button onclick="handleUserBtn()" id="userBtn" class="px-2.5 py-1.5 rounded-lg bg-amber-500/10 text-amber-400 text-xs font-bold border border-amber-500/30">
-          <i class="fa-solid fa-user"></i> <span id="userBtnText">Ingresar</span>
-        </button>
+      <div class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 px-2.5 py-1 rounded-full font-bold flex items-center gap-1.5">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span>🇻🇪 Pago Móvil Directo</span>
       </div>
     </div>
   </header>
 
-  <!-- BARRA DE TASA -->
-  <div class="bg-slate-900 border-b border-slate-800 px-4 py-1.5 text-xs text-center text-slate-400">
-    Tasa USDT Ref: <strong id="tasaDisplay" class="text-amber-400 font-mono">Bs. 950.00</strong>
-  </div>
+  <main class="max-w-4xl mx-auto p-4">
 
-  <main class="max-w-5xl mx-auto p-4">
-
-    <!-- VISTA INICIO / CATÁLOGO -->
+    <!-- VISTA INICIO -->
     <section id="view-home">
-      <div class="rounded-2xl bg-gradient-to-r from-amber-600 to-orange-700 p-6 mb-6 shadow-xl">
-        <h1 class="text-2xl sm:text-4xl font-black uppercase text-white mb-1">RECARGAS GAMER AL MEJOR PRECIO</h1>
-        <p class="text-xs sm:text-sm text-white/90">Pago Móvil, Binance, Zinli y Wally. Selecciona tu juego:</p>
+      <div class="rounded-2xl bg-gradient-to-r from-amber-600 to-orange-700 p-6 mb-6 shadow-xl text-center sm:text-left">
+        <h1 class="text-2xl sm:text-3xl font-black uppercase text-white mb-1">RECARGAS GAMER EN BOLÍVARES</h1>
+        <p class="text-xs sm:text-sm text-white/90">Pago Móvil Mercantil inmediato. Selecciona tu juego:</p>
       </div>
 
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -54,7 +44,7 @@
           <div class="p-3">
             <span class="text-[10px] text-amber-400 font-bold uppercase block">Garena</span>
             <h3 class="font-bold text-white text-sm">Free Fire</h3>
-            <span class="text-[11px] text-slate-400">Desde $1.15</span>
+            <span class="text-[11px] text-slate-400">Diamantes</span>
           </div>
         </div>
 
@@ -64,7 +54,7 @@
           <div class="p-3">
             <span class="text-[10px] text-red-400 font-bold uppercase block">Roblox</span>
             <h3 class="font-bold text-white text-sm">Robux</h3>
-            <span class="text-[11px] text-slate-400">Desde $1.20</span>
+            <span class="text-[11px] text-slate-400">Robux Directos</span>
           </div>
         </div>
 
@@ -74,7 +64,7 @@
           <div class="p-3">
             <span class="text-[10px] text-cyan-400 font-bold uppercase block">Activision</span>
             <h3 class="font-bold text-white text-sm">COD Mobile</h3>
-            <span class="text-[11px] text-slate-400">Desde $1.10</span>
+            <span class="text-[11px] text-slate-400">Puntos CP</span>
           </div>
         </div>
 
@@ -84,7 +74,7 @@
           <div class="p-3">
             <span class="text-[10px] text-yellow-400 font-bold uppercase block">Supercell</span>
             <h3 class="font-bold text-white text-sm">Brawl Stars</h3>
-            <span class="text-[11px] text-slate-400">Desde $2.20</span>
+            <span class="text-[11px] text-slate-400">Gemas</span>
           </div>
         </div>
       </div>
@@ -104,139 +94,127 @@
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
         <!-- Paquetes -->
         <div class="lg:col-span-2">
-          <h3 class="text-xs font-bold text-slate-400 uppercase mb-2">1. Selecciona Paquete</h3>
+          <h3 class="text-xs font-bold text-slate-400 uppercase mb-2">1. Selecciona el Paquete</h3>
           <div id="packagesList" class="grid grid-cols-2 gap-2"></div>
         </div>
 
-        <!-- Formulario -->
+        <!-- Formulario de Pago Móvil con Comprobante Obligatorio -->
         <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 h-fit">
+          <h3 class="text-xs font-bold text-slate-300 uppercase mb-3 border-b border-slate-800 pb-2">
+            2. Datos y Pago Móvil
+          </h3>
+
           <form id="payForm" class="space-y-3">
+            <!-- Resumen -->
             <div class="bg-slate-950 border border-slate-800 rounded-xl p-3 flex justify-between items-center">
               <span id="sumPack" class="text-xs font-bold text-white">--</span>
               <span id="sumPrice" class="text-sm font-black text-amber-400 font-mono">--</span>
             </div>
 
+            <!-- ID de Juego -->
             <div>
-              <label id="idLabel" class="block text-[11px] font-bold text-slate-400 uppercase mb-1">ID</label>
-              <input type="text" id="playerId" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2 text-sm text-white focus:outline-none focus:border-amber-400" required>
+              <label id="idLabel" class="block text-[11px] font-bold text-slate-400 uppercase mb-1">ID del Jugador</label>
+              <input type="text" id="playerId" placeholder="Ej: 19482019" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-sm text-white focus:outline-none focus:border-amber-400" required>
             </div>
 
+            <!-- CUENTAS DE PAGO MÓVIL MERCANTIL REALES -->
+            <div class="bg-slate-950 border border-amber-500/40 rounded-xl p-3 text-xs space-y-1 relative">
+              <div class="flex justify-between items-center mb-1">
+                <span class="text-[10px] font-black text-amber-400 uppercase">Datos Pago Móvil:</span>
+                <button type="button" onclick="copyPaymentData()" id="copyBtn" class="text-[10px] bg-slate-800 hover:bg-slate-700 text-amber-400 px-2 py-0.5 rounded font-bold transition">
+                  <i class="fa-solid fa-copy"></i> Copiar Datos
+                </button>
+              </div>
+              <p class="text-slate-300">Banco: <strong>Mercantil (0105)</strong></p>
+              <p class="text-slate-300">Teléfono: <strong id="dataPhone">04243058657</strong></p>
+              <p class="text-slate-300">Cédula: <strong id="dataCi">V-33269903</strong></p>
+            </div>
+
+            <!-- Banco de Origen -->
             <div>
-              <label class="block text-[11px] font-bold text-slate-400 uppercase mb-1">Método de Pago</label>
-              <select id="payMethod" onchange="updatePayInfo()" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2 text-sm text-white focus:outline-none focus:border-amber-400">
-                <option value="Pago Móvil">🇻🇪 Pago Móvil</option>
-                <option value="Binance Pay">🟡 Binance Pay</option>
-                <option value="Zinli">🟣 Zinli</option>
+              <label class="block text-[11px] font-bold text-slate-400 uppercase mb-1">Banco desde el que enviaste</label>
+              <select id="bankOrigin" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-xs text-white focus:outline-none focus:border-amber-400" required>
+                <option value="Mercantil">Mercantil</option>
+                <option value="Banco de Venezuela (BDV)">Banco de Venezuela (BDV)</option>
+                <option value="Banesco">Banesco</option>
+                <option value="Provincial (BBVA)">Provincial (BBVA)</option>
+                <option value="Bancaribe">Bancaribe</option>
+                <option value="BNC">BNC</option>
+                <option value="Banplus">Banplus</option>
+                <option value="Otro Banco">Otro Banco</option>
               </select>
             </div>
 
-            <div id="payInfoBox" class="bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-[11px] text-slate-300">
-              <p>Banco: <strong>Banesco (0134)</strong></p>
-              <p>Tel: <strong>0412-0000000</strong></p>
-              <p>CI: <strong>V-00000000</strong></p>
-            </div>
-
+            <!-- Número de Referencia -->
             <div>
-              <label class="block text-[11px] font-bold text-slate-400 uppercase mb-1">Referencia</label>
-              <input type="text" id="refInput" placeholder="Últimos 6 dígitos" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2 text-sm text-white focus:outline-none focus:border-amber-400" required>
+              <label class="block text-[11px] font-bold text-slate-400 uppercase mb-1">Número de Referencia</label>
+              <input type="text" id="refInput" pattern="[0-9]{4,10}" placeholder="Últimos 6 a 8 dígitos exactos" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-sm text-white focus:outline-none focus:border-amber-400" required>
             </div>
 
+            <!-- WhatsApp de Contacto -->
             <div>
-              <label class="block text-[11px] font-bold text-slate-400 uppercase mb-1">Tu WhatsApp</label>
-              <input type="text" id="phoneInput" placeholder="+58 412..." class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2 text-sm text-white focus:outline-none focus:border-amber-400" required>
+              <label class="block text-[11px] font-bold text-slate-400 uppercase mb-1">Tu WhatsApp de Contacto</label>
+              <input type="text" id="phoneInput" placeholder="Ej: 04121234567" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-sm text-white focus:outline-none focus:border-amber-400" required>
             </div>
 
-            <button type="submit" id="btnSubmit" class="w-full bg-amber-400 hover:bg-amber-300 text-black font-black py-2.5 rounded-xl text-xs uppercase tracking-wider transition">
-              Confirmar y Enviar Ticket
+            <!-- FOTO OBLIGATORIA DEL COMPROBANTE -->
+            <div>
+              <label class="block text-[11px] font-bold text-amber-400 uppercase mb-1">
+                <i class="fa-solid fa-camera mr-1"></i> Subir Captura del Pago (Obligatorio)
+              </label>
+              <input type="file" id="receiptFile" accept="image/*" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2 text-xs text-slate-400 file:mr-2 file:py-1 file:px-2.5 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-amber-400 file:text-black hover:file:bg-amber-300" required>
+            </div>
+
+            <button type="submit" id="btnSubmit" class="w-full bg-amber-400 hover:bg-amber-300 text-black font-black py-3 rounded-xl text-xs uppercase tracking-wider transition shadow-lg shadow-amber-500/20 active:scale-95">
+              Validar y Enviar Comprobante
             </button>
           </form>
 
-          <div id="ticketOk" class="hidden text-center py-4">
-            <i class="fa-solid fa-check text-amber-400 text-3xl mb-2"></i>
-            <h4 class="font-bold text-white text-sm uppercase">¡Ticket Creado!</h4>
-            <span id="ticketIdView" class="font-mono text-lg font-bold text-amber-400 block my-1"></span>
-            <p class="text-xs text-slate-400 mb-3">Notificado a Telegram.</p>
-            <button onclick="navigate('home')" class="w-full bg-slate-800 text-xs py-2 rounded-xl text-white">Volver</button>
+          <!-- Ticket Confirmado -->
+          <div id="ticketOk" class="hidden text-center py-6">
+            <i class="fa-solid fa-circle-check text-emerald-400 text-4xl mb-2"></i>
+            <h4 class="font-bold text-white text-base uppercase">¡Comprobante Recibido!</h4>
+            <span id="ticketIdView" class="font-mono text-xl font-black text-amber-400 block my-1"></span>
+            <p class="text-xs text-slate-300 mb-4 leading-relaxed">
+              Verificaremos el pago en nuestra cuenta de Mercantil. Tu recarga se entregará de 5 a 15 minutos vía WhatsApp.
+            </p>
+            <button onclick="navigate('home')" class="w-full bg-slate-800 text-xs py-2.5 rounded-xl text-white font-bold">Volver al inicio</button>
           </div>
         </div>
       </div>
     </section>
-
-    <!-- VISTA PERFIL / HISTORIAL -->
-    <section id="view-profile" class="hidden max-w-lg mx-auto">
-      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 mb-4 flex justify-between items-center">
-        <div>
-          <h2 id="profName" class="font-bold text-white text-base">Cliente VIP</h2>
-          <p id="profPhone" class="text-xs text-slate-400"></p>
-        </div>
-        <button onclick="logout()" class="text-xs text-rose-400 font-bold">Cerrar Sesión</button>
-      </div>
-
-      <h3 class="text-xs font-bold text-slate-400 uppercase mb-2">Historial de Recargas</h3>
-      <div id="historyList" class="space-y-2"></div>
-    </section>
   </main>
-  <!-- MODAL INGRESO USUARIO -->
-  <div id="userModal" class="fixed inset-0 bg-black/80 flex items-center justify-center p-4 hidden z-50">
-    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 max-w-xs w-full">
-      <h3 class="font-bold text-white text-center mb-3">Club Cliente Frecuente</h3>
-      <form id="userForm" class="space-y-3">
-        <input type="text" id="regName" placeholder="Tu Nombre" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2 text-xs text-white" required>
-        <input type="text" id="regPhone" placeholder="Tu WhatsApp (+58...)" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2 text-xs text-white" required>
-        <button type="submit" class="w-full bg-amber-400 text-black font-bold py-2 rounded-xl text-xs uppercase">Guardar</button>
-        <button type="button" onclick="closeModal('userModal')" class="w-full text-slate-400 text-xs">Cancelar</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- MODAL CALCULADORA -->
-  <div id="calcModal" class="fixed inset-0 bg-black/80 flex items-center justify-center p-4 hidden z-50">
-    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 max-w-xs w-full">
-      <h3 class="font-bold text-white text-center mb-2">Calculadora USDT a Bs</h3>
-      <div class="space-y-2">
-        <label class="text-[10px] text-slate-400 uppercase">Tasa Bs/USDT:</label>
-        <input type="number" id="customRate" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2 text-xs text-amber-400 font-mono font-bold" value="950.00">
-        <button onclick="setTasa()" class="w-full bg-slate-800 text-xs py-1.5 rounded-lg text-white font-bold">Fijar Tasa</button>
-        <label class="text-[10px] text-slate-400 uppercase block mt-2">Dólares ($):</label>
-        <input type="number" id="calcUsd" oninput="calcBs()" placeholder="Ej: 5" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2 text-xs text-white font-mono">
-        <div class="p-3 bg-amber-500/10 border border-amber-500/20 rounded-xl text-center mt-2">
-          <span class="text-[10px] text-amber-400 block font-bold">TOTAL EN BOLÍVARES:</span>
-          <span id="calcResult" class="text-lg font-black text-amber-400 font-mono">Bs. 0.00</span>
-        </div>
-        <button onclick="closeModal('calcModal')" class="w-full text-slate-400 text-xs pt-2">Cerrar</button>
-      </div>
-    </div>
-  </div>
 
   <script>
-    // DATOS DE TELEGRAM
+    // CREDENCIALES TELEGRAM
     const _p1 = "8820908977:";
     const _p2 = "AAEYmoIhzajWmFER";
     const _p3 = "HZ6qRUPOh7f9RxjSQlY";
     const BOT_TOKEN = _p1 + _p2 + _p3;
     const CHAT_ID = "6695879116";
 
-    let TASA = 950.00;
+    // Tasa referencial en Bolívares por dólar (ajustable cuando cambie)
+    const TASA = 950.00;
+
     let selectedGame = null;
     let selectedPkg = null;
 
     const GAMES = {
       freefire: {
         title: "Free Fire",
-        desc: "Diamantes oficiales por ID",
+        desc: "Diamantes oficiales Garena por ID de jugador.",
         idLabel: "ID de Jugador (UID)",
         pkgs: [
-          { name: "100 + 10 Diamantes", price: 1.15 },
-          { name: "310 + 31 Diamantes", price: 3.40 },
-          { name: "520 + 52 Diamantes", price: 5.50 },
-          { name: "1,060 + 106 Diamantes", price: 10.80 },
-          { name: "Tarjeta Semanal", price: 2.20 },
-          { name: "Tarjeta Mensual", price: 10.50 }
+          { name: "100 Diamantes", price: 1.15 },
+          { name: "310 Diamantes", price: 3.40 },
+          { name: "520 Diamantes", price: 5.50 },
+          { name: "1,060 Diamantes", price: 10.80 },
+          { name: "Pase Semanal", price: 2.20 }
         ]
       },
       roblox: {
         title: "Roblox",
-        desc: "Robux 100% legales a tu Usuario",
+        desc: "Robux acreditados a tu cuenta sin contraseña.",
         idLabel: "Usuario de Roblox",
         pkgs: [
           { name: "80 Robux", price: 1.20 },
@@ -247,7 +225,7 @@
       },
       codm: {
         title: "COD Mobile",
-        desc: "Puntos CP con UID",
+        desc: "COD Points oficiales mediante UID.",
         idLabel: "Player UID",
         pkgs: [
           { name: "80 CP", price: 1.10 },
@@ -257,7 +235,7 @@
       },
       brawl: {
         title: "Brawl Stars",
-        desc: "Gemas y Brawl Pass",
+        desc: "Gemas directas a tu Supercell ID.",
         idLabel: "Player Tag (#TAG)",
         pkgs: [
           { name: "30 Gemas", price: 2.20 },
@@ -270,32 +248,9 @@
     function navigate(v) {
       document.getElementById('view-home').classList.add('hidden');
       document.getElementById('view-game').classList.add('hidden');
-      document.getElementById('view-profile').classList.add('hidden');
       if (v === 'home') document.getElementById('view-home').classList.remove('hidden');
       if (v === 'game') document.getElementById('view-game').classList.remove('hidden');
-      if (v === 'profile') {
-        renderHistory();
-        document.getElementById('view-profile').classList.remove('hidden');
-      }
       window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
-    function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
-
-    function setTasa() {
-      const v = parseFloat(document.getElementById('customRate').value);
-      if (v) {
-        TASA = v;
-        document.getElementById('tasaDisplay').innerText = "Bs. " + TASA.toFixed(2);
-        if (selectedGame) selectGame(selectedGame);
-        alert("Tasa fijada en Bs. " + TASA);
-      }
-    }
-
-    function calcBs() {
-      const usd = parseFloat(document.getElementById('calcUsd').value) || 0;
-      document.getElementById('calcResult').innerText = "Bs. " + (usd * TASA).toLocaleString('es-VE', { minimumFractionDigits: 2 });
     }
 
     function selectGame(key) {
@@ -305,28 +260,25 @@
       document.getElementById('gameDesc').innerText = g.desc;
       document.getElementById('idLabel').innerText = g.idLabel;
 
-      const user = JSON.parse(localStorage.getItem('pw_user'));
-      if (user && user.phone) document.getElementById('phoneInput').value = user.phone;
-
       const container = document.getElementById('packagesList');
       container.innerHTML = '';
 
       g.pkgs.forEach((p, idx) => {
         const bs = (p.price * TASA).toLocaleString('es-VE', { minimumFractionDigits: 2 });
         const card = document.createElement('div');
-        card.className = "bg-slate-950 border border-slate-800 rounded-xl p-2.5 cursor-pointer hover:border-amber-400";
+        card.className = "bg-slate-950 border border-slate-800 rounded-xl p-3 cursor-pointer hover:border-amber-400 transition";
         card.id = `pkg-${idx}`;
         card.onclick = () => {
           selectedPkg = p;
           document.querySelectorAll('#packagesList div').forEach(d => d.classList.remove('pkg-sel'));
           card.classList.add('pkg-sel');
           document.getElementById('sumPack').innerText = p.name;
-          document.getElementById('sumPrice').innerText = `$${p.price.toFixed(2)} (~Bs. ${bs})`;
+          document.getElementById('sumPrice').innerText = `Bs. ${bs} ($${p.price.toFixed(2)})`;
         };
         card.innerHTML = `
-          <span class="text-xs font-bold text-white block">${p.name}</span>
-          <span class="text-sm font-black text-amber-400 font-mono block">$${p.price.toFixed(2)}</span>
-          <span class="text-[10px] text-slate-500 font-mono">~Bs. ${bs}</span>
+          <span class="text-xs font-bold text-white block mb-0.5">${p.name}</span>
+          <span class="text-sm font-black text-amber-400 font-mono block">Bs. ${bs}</span>
+          <span class="text-[10px] text-slate-500 font-mono">$${p.price.toFixed(2)} Ref</span>
         `;
         container.appendChild(card);
       });
@@ -335,121 +287,78 @@
       navigate('game');
     }
 
-    function updatePayInfo() {
-      const m = document.getElementById('payMethod').value;
-      const box = document.getElementById('payInfoBox');
-      if (m === 'Pago Móvil') {
-        box.innerHTML = `<p>Banco: <strong>Banesco (0134)</strong></p><p>Tel: <strong>0412-0000000</strong></p><p>CI: <strong>V-00000000</strong></p>`;
-      } else if (m === 'Binance Pay') {
-        box.innerHTML = `<p>Binance Pay ID: <strong>99887766</strong></p><p>Moneda: <strong>USDT</strong></p>`;
-      } else {
-        box.innerHTML = `<p>Zinli: <strong>pagos@powerstore.com</strong></p>`;
-      }
+    // Copiar datos de Pago Móvil con un toque
+    function copyPaymentData() {
+      const text = "Pago Móvil Mercantil (0105)\nTel: 04243058657\nCI: 33269903";
+      navigator.clipboard.writeText(text);
+      const btn = document.getElementById('copyBtn');
+      btn.innerHTML = `<i class="fa-solid fa-check"></i> ¡Copiado!`;
+      setTimeout(() => {
+        btn.innerHTML = `<i class="fa-solid fa-copy"></i> Copiar Datos`;
+      }, 2000);
     }
 
-    // GESTIÓN USUARIO
-    function handleUserBtn() {
-      const u = JSON.parse(localStorage.getItem('pw_user'));
-      if (u) {
-        document.getElementById('profName').innerText = u.name;
-        document.getElementById('profPhone').innerText = u.phone;
-        navigate('profile');
-      } else {
-        openModal('userModal');
-      }
-    }
-
-    document.getElementById('userForm').addEventListener('submit', (e) => {
-      e.preventDefault();
-      const u = { name: document.getElementById('regName').value, phone: document.getElementById('regPhone').value };
-      localStorage.setItem('pw_user', JSON.stringify(u));
-      document.getElementById('userBtnText').innerText = u.name;
-      closeModal('userModal');
-    });
-
-    function logout() {
-      localStorage.removeItem('pw_user');
-      document.getElementById('userBtnText').innerText = 'Ingresar';
-      navigate('home');
-    }
-
-    function renderHistory() {
-      const list = JSON.parse(localStorage.getItem('pw_orders')) || [];
-      const cont = document.getElementById('historyList');
-      if (list.length === 0) {
-        cont.innerHTML = `<p class="text-xs text-slate-500 text-center py-4">No tienes órdenes registradas.</p>`;
-        return;
-      }
-      cont.innerHTML = '';
-      list.forEach(o => {
-        cont.innerHTML += `
-          <div class="bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-xs flex justify-between">
-            <div>
-              <span class="font-mono text-amber-400 font-bold">${o.tk}</span> • <strong>${o.game}</strong>
-              <p class="text-slate-400">${o.pkg} - Ref: ${o.ref}</p>
-            </div>
-            <span class="font-bold text-white">${o.price}</span>
-          </div>
-        `;
-      });
-    }
-
-    // ENVÍO DE TICKET
+    // ENVÍO DEL FORMULARIO CON FOTO A TELEGRAM
     document.getElementById('payForm').addEventListener('submit', async (e) => {
       e.preventDefault();
       const btn = document.getElementById('btnSubmit');
+      const fileInput = document.getElementById('receiptFile');
+
+      if (!fileInput.files || fileInput.files.length === 0) {
+        alert("Debes adjuntar la captura del comprobante de Pago Móvil.");
+        return;
+      }
+
       btn.disabled = true;
-      btn.innerText = "Enviando...";
+      btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Subiendo Comprobante...`;
 
       const tk = '#TK-' + Math.floor(1000 + Math.random() * 9000);
       const game = GAMES[selectedGame].title;
       const pid = document.getElementById('playerId').value;
-      const m = document.getElementById('payMethod').value;
+      const bank = document.getElementById('bankOrigin').value;
       const ref = document.getElementById('refInput').value;
       const ph = document.getElementById('phoneInput').value;
-      const bsMonto = (selectedPkg.price * TASA).toFixed(2);
+      const bsMonto = (selectedPkg.price * TASA).toLocaleString('es-VE', { minimumFractionDigits: 2 });
 
-      const msg = `⚡ *NUEVA ORDEN POWER STORE* ⚡\n\n` +
-                  `🎫 *Ticket:* \`${tk}\`\n` +
-                  `🎮 *Juego:* ${game}\n` +
-                  `📦 *Paquete:* ${selectedPkg.name} ($${selectedPkg.price} / ~Bs. ${bsMonto})\n` +
-                  `🆔 *ID:* \`${pid}\`\n` +
-                  `💳 *Método:* ${m}\n` +
-                  `🧾 *Ref:* \`${ref}\`\n` +
-                  `📱 *WhatsApp:* ${ph}`;
+      const caption = `🚨 *NUEVO PAGO MÓVIL RECIBIDO* 🚨\n\n` +
+                      `🎫 *Ticket:* \`${tk}\`\n` +
+                      `🎮 *Juego:* ${game}\n` +
+                      `📦 *Paquete:* ${selectedPkg.name} ($${selectedPkg.price})\n` +
+                      `💵 *Monto:* Bs. ${bsMonto}\n` +
+                      `🆔 *ID Cliente:* \`${pid}\`\n` +
+                      `🏦 *Banco Emisor:* ${bank}\n` +
+                      `🧾 *Referencia:* \`${ref}\`\n` +
+                      `📱 *WhatsApp:* ${ph}\n\n` +
+                      `⚠️ *Destino:* Mercantil 04243058657 - V33269903\n` +
+                      `Verifica en tu app Mercantil antes de recargar.`;
+
+      const formData = new FormData();
+      formData.append('chat_id', CHAT_ID);
+      formData.append('photo', fileInput.files[0]);
+      formData.append('caption', caption);
+      formData.append('parse_mode', 'Markdown');
 
       try {
-        const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+        const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ chat_id: CHAT_ID, text: msg, parse_mode: 'Markdown' })
+          body: formData
         });
 
         if (res.ok) {
-          let orders = JSON.parse(localStorage.getItem('pw_orders')) || [];
-          orders.unshift({ tk, game, pkg: selectedPkg.name, price: `$${selectedPkg.price}`, ref });
-          localStorage.setItem('pw_orders', JSON.stringify(orders));
-
           document.getElementById('payForm').classList.add('hidden');
           document.getElementById('ticketIdView').innerText = tk;
           document.getElementById('ticketOk').classList.remove('hidden');
         } else {
-          alert('Error al enviar ticket a Telegram.');
+          alert('Hubo un error al subir el comprobante a Telegram. Asegúrate de que la foto no sea muy pesada.');
           btn.disabled = false;
-          btn.innerText = "Confirmar y Enviar Ticket";
+          btn.innerText = "Validar y Enviar Comprobante";
         }
       } catch (err) {
-        alert('Error de red.');
+        alert('Error de conexión al enviar el comprobante.');
         btn.disabled = false;
-        btn.innerText = "Confirmar y Enviar Ticket";
+        btn.innerText = "Validar y Enviar Comprobante";
       }
     });
-
-    // Auto-login si ya existe
-    const savedUser = JSON.parse(localStorage.getItem('pw_user'));
-    if (savedUser) document.getElementById('userBtnText').innerText = savedUser.name;
   </script>
 </body>
 </html>
-
-    
