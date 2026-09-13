@@ -531,12 +531,12 @@
             <div class="p-6 rounded-2xl bg-surface-container border border-surface-container-high shadow-md">
               <div class="w-12 h-12 rounded-xl bg-surface-container-highest flex items-center justify-center font-headline-md text-xl text-primary mb-4 font-bold">02</div>
               <h3 class="font-headline-sm text-base font-bold text-on-surface mb-2">Prueba Anti-Bot</h3>
-              <p class="font-body-md text-xs text-on-surface-variant">Supera el acertijo humano para desbloquear los datos de Pago Móvil protegidos.</p>
+              <p class="font-body-md text-xs text-on-surface-variant">Supera el acertijo humano de doble cálculo para desbloquear los datos de pago protegidos.</p>
             </div>
             <div class="p-6 rounded-2xl bg-surface-container border border-surface-container-high shadow-md">
               <div class="w-12 h-12 rounded-xl bg-surface-container-highest flex items-center justify-center font-headline-md text-xl text-secondary-fixed mb-4 font-bold">03</div>
               <h3 class="font-headline-sm text-base font-bold text-on-surface mb-2">Sube Captura y Recibe</h3>
-              <p class="font-body-md text-xs text-on-surface-variant">Transfiere por Pago Móvil y sube tu comprobante; tu orden llega al instante a Telegram.</p>
+              <p class="font-body-md text-xs text-on-surface-variant">Ingresa los datos bancarios exactos y el comprobante; tu orden llega al instante a Telegram.</p>
             </div>
           </div>
         </div>
@@ -593,7 +593,7 @@
     </div>
   </main>
 
-  <!-- FOOTER (SIN DATOS DE PAGO VISIBLES) -->
+  <!-- FOOTER -->
   <footer class="w-full bg-surface-container-lowest shadow-[0_-10px_30px_rgba(0,0,0,0.8)] border-t border-surface-container-high/60">
     <div class="max-w-[1280px] mx-auto px-6 py-12">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pb-8 mb-8 border-b border-surface-container-highest/60">
@@ -635,7 +635,7 @@
       </div>
     </div>
   </footer>
-  <!-- MODAL DE CHECKOUT: PAQUETE -> ANTI-BOT -> PAGO MÓVIL MERCANTIL SEGURO -->
+  <!-- MODAL DE CHECKOUT -->
   <div id="checkoutModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
     <div class="bg-surface-container border border-surface-container-high rounded-2xl max-w-md w-full max-h-[92vh] overflow-y-auto p-5 sm:p-6 shadow-2xl relative">
       <button onclick="closeModal('checkoutModal')" class="absolute top-4 right-4 text-on-surface-variant hover:text-on-surface">
@@ -678,8 +678,8 @@
         </div>
 
         <div>
-          <label class="block text-xs font-bold text-on-surface-variant uppercase mb-1">Tu WhatsApp de Contacto</label>
-          <input type="text" id="phoneInput" placeholder="Ej: 04241234567" class="w-full bg-surface-container-lowest border border-surface-container-highest rounded-xl px-3.5 py-2 text-sm text-on-surface focus:outline-none focus:border-secondary-container" required>
+          <label class="block text-xs font-bold text-on-surface-variant uppercase mb-1">Tu WhatsApp de Notificación</label>
+          <input type="text" id="phoneInput" placeholder="Ej: 04121234567" class="w-full bg-surface-container-lowest border border-surface-container-highest rounded-xl px-3.5 py-2 text-sm text-on-surface focus:outline-none focus:border-secondary-container" required>
         </div>
 
         <button type="button" onclick="goToStep2()" class="w-full py-3 rounded-xl bg-secondary-container text-surface-container-lowest font-bold text-xs uppercase tracking-wider transition flex items-center justify-center gap-1.5 shadow-lg shadow-secondary-container/20">
@@ -688,40 +688,39 @@
         </button>
       </div>
 
-      <!-- PASO 2: ANTI-BOT -->
+      <!-- PASO 2: ANTI-BOT AVANZADO (CANVAS + CÁLCULO DINÁMICO) -->
       <div id="modalStep2" class="space-y-4 hidden text-center py-2">
         <div class="w-12 h-12 rounded-2xl bg-secondary-container/10 border border-secondary-container/30 text-secondary-container flex items-center justify-center mx-auto">
-          <span class="material-symbols-outlined text-[28px]">smart_toy</span>
+          <span class="material-symbols-outlined text-[28px]">security</span>
         </div>
         <div>
-          <h4 class="text-sm font-bold text-on-surface uppercase">Comprobación de Seguridad</h4>
-          <p class="text-xs text-on-surface-variant mt-0.5">Resuelve la suma para desbloquear los datos de Pago Móvil:</p>
+          <h4 class="text-sm font-bold text-on-surface uppercase">Prueba Anti-Bot de Seguridad</h4>
+          <p class="text-xs text-on-surface-variant mt-0.5">Resuelve el desafío matemático protegido para desbloquear la cuenta:</p>
         </div>
 
         <div class="bg-surface-container-lowest border border-surface-container-highest rounded-2xl p-4 flex flex-col items-center">
-          <span class="text-xs text-outline block mb-1 uppercase font-bold">¿Cuánto es la suma?</span>
-          <div class="text-2xl font-mono font-black text-secondary-fixed flex items-center gap-2 mb-3">
-            <span id="captchaNum1">7</span>
-            <span>+</span>
-            <span id="captchaNum2">5</span>
-            <span>=</span>
-            <span>?</span>
+          <div class="relative mb-3 flex items-center justify-center">
+            <canvas id="captchaCanvas" width="240" height="60" class="rounded-lg border border-surface-container-highest bg-surface-container-low shadow-inner"></canvas>
+            <button type="button" onclick="generateHardCaptcha()" class="absolute right-2 p-1 text-on-surface-variant hover:text-secondary-container transition" title="Cambiar código">
+              <span class="material-symbols-outlined text-[18px]">refresh</span>
+            </button>
           </div>
-          <input type="number" id="captchaAnswer" placeholder="Resultado" class="w-32 bg-surface-container border border-surface-container-highest rounded-lg p-2 text-center text-sm text-secondary-container font-mono font-bold focus:outline-none focus:border-secondary-container">
+          <input type="number" id="captchaAnswer" placeholder="Introduce el resultado" class="w-48 bg-surface-container border border-surface-container-highest rounded-xl p-2.5 text-center text-sm text-secondary-container font-mono font-bold focus:outline-none focus:border-secondary-container">
+          <span class="text-[10px] text-outline mt-1 font-mono">Consejo: Multiplicaciones primero, luego sumas/restas.</span>
         </div>
 
         <div class="flex gap-2">
           <button type="button" onclick="backToStep1()" class="w-1/3 py-2.5 rounded-xl bg-surface-container-highest text-on-surface text-xs font-bold uppercase">
             Atrás
           </button>
-          <button type="button" onclick="verifyCaptcha()" class="w-2/3 py-2.5 rounded-xl bg-secondary-container text-surface-container-lowest font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-1">
-            <span>Desbloquear Pago</span>
+          <button type="button" onclick="verifyCaptcha()" class="w-2/3 py-2.5 rounded-xl bg-secondary-container text-surface-container-lowest font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-1 shadow-md shadow-secondary-container/20">
+            <span>Validar y Ver Datos</span>
             <span class="material-symbols-outlined text-[16px]">lock_open</span>
           </button>
         </div>
       </div>
 
-      <!-- PASO 3: DATOS MERCANTIL Y FOTO -->
+      <!-- PASO 3: DATOS MERCANTIL Y CONCILIACIÓN EXIGIDA -->
       <div id="modalStep3" class="space-y-4 hidden">
         <div class="bg-surface-container-lowest border border-secondary-container/60 rounded-xl p-3.5 text-xs space-y-1.5 relative shadow-inner">
           <div class="flex items-center justify-between">
@@ -737,40 +736,54 @@
           <p class="text-on-surface-variant">Teléfono: <strong class="text-on-surface">04243058657</strong></p>
           <p class="text-on-surface-variant">Cédula: <strong class="text-on-surface">V-33269903</strong></p>
           <p class="text-on-surface-variant border-t border-surface-container-highest pt-1">
-            Monto a transferir: <strong id="step3MontoBs" class="text-secondary-container font-mono text-sm">Bs. 0.00</strong>
+            Monto Exacto en Bolívares: <strong id="step3MontoBs" class="text-secondary-container font-mono text-sm">Bs. 0.00</strong>
           </p>
         </div>
 
         <form id="payForm" class="space-y-3">
           <div class="grid grid-cols-2 gap-2">
             <div>
-              <label class="block text-[10px] font-bold text-on-surface-variant uppercase mb-1">Banco Emisor</label>
-              <select id="bankOrigin" class="w-full bg-surface-container-lowest border border-surface-container-highest rounded-xl p-2 text-xs text-on-surface focus:outline-none" required>
+              <label class="block text-[10px] font-bold text-on-surface-variant uppercase mb-1">Cédula del Titular que Pagó</label>
+              <input type="text" id="payerDoc" placeholder="Ej: V-18492019" class="w-full bg-surface-container-lowest border border-surface-container-highest rounded-xl p-2 text-xs text-on-surface focus:outline-none focus:border-secondary-container" required>
+            </div>
+            <div>
+              <label class="block text-[10px] font-bold text-on-surface-variant uppercase mb-1">Teléfono Emisor Pago Móvil</label>
+              <input type="text" id="payerPhone" placeholder="Ej: 04141234567" class="w-full bg-surface-container-lowest border border-surface-container-highest rounded-xl p-2 text-xs text-on-surface focus:outline-none focus:border-secondary-container" required>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label class="block text-[10px] font-bold text-on-surface-variant uppercase mb-1">Banco Origen</label>
+              <select id="bankOrigin" class="w-full bg-surface-container-lowest border border-surface-container-highest rounded-xl p-2 text-xs text-on-surface focus:outline-none focus:border-secondary-container" required>
                 <option value="Mercantil">Mercantil</option>
-                <option value="BDV">BDV</option>
+                <option value="Banco de Venezuela (BDV)">Banco de Venezuela (BDV)</option>
                 <option value="Banesco">Banesco</option>
-                <option value="Provincial">Provincial</option>
+                <option value="Provincial (BBVA)">Provincial (BBVA)</option>
                 <option value="BNC">BNC</option>
-                <option value="Otro">Otro Banco</option>
+                <option value="Bancaribe">Bancaribe</option>
+                <option value="Bancamiga">Bancamiga</option>
+                <option value="Banplus">Banplus</option>
+                <option value="Otro Banco">Otro Banco</option>
               </select>
             </div>
             <div>
-              <label class="block text-[10px] font-bold text-on-surface-variant uppercase mb-1">Nº Referencia</label>
-              <input type="text" id="refInput" pattern="[0-9]{4,12}" placeholder="Últimos dígitos" class="w-full bg-surface-container-lowest border border-surface-container-highest rounded-xl p-2 text-xs text-on-surface focus:outline-none" required>
+              <label class="block text-[10px] font-bold text-on-surface-variant uppercase mb-1">Nº Referencia Exacto</label>
+              <input type="text" id="refInput" pattern="[0-9]{4,12}" placeholder="Últimos 6 a 8 dígitos" class="w-full bg-surface-container-lowest border border-surface-container-highest rounded-xl p-2 text-xs text-on-surface focus:outline-none focus:border-secondary-container" required>
             </div>
           </div>
 
           <div>
             <label class="block text-xs font-bold text-secondary-fixed uppercase mb-1 flex items-center gap-1">
               <span class="material-symbols-outlined text-[16px]">photo_camera</span>
-              <span>Subir Captura del Pago Móvil (Obligatorio)</span>
+              <span>Captura de Pantalla del Comprobante (Obligatorio)</span>
             </label>
             <input type="file" id="receiptFile" accept="image/*" class="w-full bg-surface-container-lowest border border-surface-container-highest rounded-xl p-2 text-xs text-on-surface-variant file:mr-2 file:py-1 file:px-2.5 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-secondary-container file:text-on-secondary-container" required>
           </div>
 
-          <button type="submit" id="btnSubmit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-secondary-container to-primary-container text-surface-container-lowest font-bold text-xs uppercase tracking-wider hover:shadow-[0_0_20px_rgba(0,238,252,0.4)] transition-all flex items-center justify-center gap-2">
+          <button type="submit" id="btnSubmit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-secondary-container to-primary-container text-surface-container-lowest font-bold text-xs uppercase tracking-wider hover:shadow-[0_0_20px_rgba(0,238,252,0.4)] transition-all flex items-center justify-center gap-2 shadow-lg shadow-secondary-container/20">
             <span class="material-symbols-outlined text-[18px]">send</span>
-            <span>Finalizar y Enviar Ticket a Telegram</span>
+            <span>Verificar y Enviar Ticket a Telegram</span>
           </button>
         </form>
       </div>
@@ -783,7 +796,7 @@
         <h4 class="font-headline-sm text-2xl font-bold uppercase text-on-surface">¡Ticket Generado!</h4>
         <span id="ticketIdView" class="font-mono text-xl font-bold text-secondary-container block my-2"></span>
         <p class="text-xs text-on-surface-variant mb-6 leading-relaxed max-w-sm mx-auto">
-          Tu comprobante ha sido recibido en Telegram. Verificaremos en nuestra cuenta Mercantil y acreditaremos tus recursos en &lt;15 minutos.
+          Tus datos bancarios y comprobante fueron enviados al operador vía Telegram. Verificaremos en nuestra cuenta Mercantil y se acreditará tu recarga en &lt;15 minutos.
         </p>
         <button onclick="closeModal('checkoutModal')" class="w-full py-2.5 rounded-xl bg-surface-container-highest text-on-surface text-xs font-bold uppercase transition">
           Cerrar
@@ -818,7 +831,7 @@
       </div>
     </div>
   </div>
-  <!-- SCRIPT COMPLETO CON 4 JUEGOS Y SIN CONTADOR NUMÉRICO -->
+  <!-- JAVASCRIPT: LÓGICA, ANTI-BOT AVANZADO, TELEGRAM, COMENTARIOS -->
   <script>
     const _p1 = "8820908977:";
     const _p2 = "AAEYmoIhzajWmFER";
@@ -983,24 +996,78 @@
       setStepIndicator(1);
     }
 
+    // GENERADOR ANTI-BOT DIFÍCIL CON CANVAS DISTORSIONADO
+    function generateHardCaptcha() {
+      const a = Math.floor(Math.random() * 7) + 3; // 3 a 9
+      const b = Math.floor(Math.random() * 6) + 2; // 2 a 7
+      const c = Math.floor(Math.random() * 15) + 5; // 5 a 19
+      const useSub = Math.random() > 0.5;
+
+      let expr = "";
+      if (useSub) {
+        captchaExpected = (a * b) - c;
+        expr = `${a} × ${b} - ${c} = ?`;
+      } else {
+        captchaExpected = (a * b) + c;
+        expr = `${a} × ${b} + ${c} = ?`;
+      }
+
+      const canvas = document.getElementById('captchaCanvas');
+      if (canvas) {
+        const ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Fondo oscuro texturizado
+        ctx.fillStyle = "#10131a";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Líneas de ruido protectoras
+        for (let i = 0; i < 7; i++) {
+          ctx.strokeStyle = `rgba(0, 238, 252, ${0.15 + Math.random() * 0.25})`;
+          ctx.lineWidth = 1 + Math.random() * 2;
+          ctx.beginPath();
+          ctx.moveTo(Math.random() * canvas.width, Math.random() * canvas.height);
+          ctx.bezierCurveTo(
+            Math.random() * canvas.width, Math.random() * canvas.height,
+            Math.random() * canvas.width, Math.random() * canvas.height,
+            Math.random() * canvas.width, Math.random() * canvas.height
+          );
+          ctx.stroke();
+        }
+
+        // Puntos de dispersión (anti-OCR)
+        for (let i = 0; i < 40; i++) {
+          ctx.fillStyle = `rgba(219, 184, 255, ${Math.random() * 0.5})`;
+          ctx.beginPath();
+          ctx.arc(Math.random() * canvas.width, Math.random() * canvas.height, 1.5, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        // Renderizado del texto distorsionado
+        ctx.font = "bold 22px 'Geist', monospace";
+        ctx.fillStyle = "#7df4ff";
+        ctx.textBaseline = "middle";
+        ctx.textAlign = "center";
+        ctx.shadowColor = "#00eefc";
+        ctx.shadowBlur = 6;
+        ctx.fillText(expr, canvas.width / 2, canvas.height / 2);
+        ctx.shadowBlur = 0;
+      }
+      document.getElementById('captchaAnswer').value = '';
+    }
+
     function goToStep2() {
       const pid = document.getElementById('playerId').value.trim();
       const phone = document.getElementById('phoneInput').value.trim();
       if (!pid || !phone) {
-        alert("Por favor ingresa tu ID de jugador y tu WhatsApp.");
+        alert("Por favor ingresa tu ID de jugador y tu WhatsApp de contacto.");
         return;
       }
-      const n1 = Math.floor(Math.random() * 8) + 2;
-      const n2 = Math.floor(Math.random() * 8) + 2;
-      captchaExpected = n1 + n2;
-      document.getElementById('captchaNum1').innerText = n1;
-      document.getElementById('captchaNum2').innerText = n2;
-      document.getElementById('captchaAnswer').value = '';
-
       document.getElementById('modalStep1').classList.add('hidden');
       document.getElementById('modalStep2').classList.remove('hidden');
       document.getElementById('modalStep3').classList.add('hidden');
       setStepIndicator(2);
+      setTimeout(generateHardCaptcha, 50);
     }
 
     function verifyCaptcha() {
@@ -1013,7 +1080,8 @@
         document.getElementById('modalStep3').classList.remove('hidden');
         setStepIndicator(3);
       } else {
-        alert("Respuesta incorrecta. Intenta de nuevo.");
+        alert("Resultado incorrecto. Por favor realiza la operación matemática e intenta nuevamente.");
+        generateHardCaptcha();
       }
     }
 
@@ -1082,6 +1150,7 @@
       });
     }
 
+    // ENVÍO DE ORDEN + DATOS BANCARIOS EXACTOS A TELEGRAM
     document.getElementById('payForm').addEventListener('submit', async (e) => {
       e.preventDefault();
       const btn = document.getElementById('btnSubmit');
@@ -1098,22 +1167,27 @@
       const tk = '#TK-' + Math.floor(1000 + Math.random() * 9000);
       const game = GAMES_DATA[selectedGameKey].title;
       const pid = document.getElementById('playerId').value;
+      const ph = document.getElementById('phoneInput').value;
+      const payerDoc = document.getElementById('payerDoc').value;
+      const payerPhone = document.getElementById('payerPhone').value;
       const bank = document.getElementById('bankOrigin').value;
       const ref = document.getElementById('refInput').value;
-      const ph = document.getElementById('phoneInput').value;
       const bsMonto = (selectedPkg.price * TASA).toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-      const caption = `🚨 *NUEVO PAGO MÓVIL POWER STORE* 🚨\n\n` +
+      const caption = `🚨 *NUEVA ORDEN VALIDADA - POWER STORE* 🚨\n\n` +
                       `🎫 *Ticket:* \`${tk}\`\n` +
                       `🎮 *Juego:* ${game}\n` +
                       `📦 *Paquete:* ${selectedPkg.name} ($${selectedPkg.price})\n` +
                       `💵 *Monto:* Bs. ${bsMonto}\n` +
-                      `🆔 *ID Cliente:* \`${pid}\`\n` +
-                      `🏦 *Banco Emisor:* ${bank}\n` +
-                      `🧾 *Referencia:* \`${ref}\`\n` +
-                      `📱 *WhatsApp:* ${ph}\n\n` +
+                      `🆔 *ID Jugador:* \`${pid}\`\n` +
+                      `📱 *WhatsApp Contacto:* ${ph}\n\n` +
+                      `🔍 *DATOS DEL PAGADOR (CONCILIACIÓN):*\n` +
+                      `👤 *Cédula Emisor:* \`${payerDoc}\`\n` +
+                      `📞 *Teléfono Emisor:* \`${payerPhone}\`\n` +
+                      `🏦 *Banco Origen:* ${bank}\n` +
+                      `🧾 *Referencia:* \`${ref}\`\n\n` +
                       `⚠️ *Destino:* Mercantil 04243058657 - V33269903\n` +
-                      `Verifica en tu app Mercantil antes de despachar.`;
+                      `🛡️ *Anti-Bot:* Superado con éxito.`;
 
       const formData = new FormData();
       formData.append('chat_id', CHAT_ID);
@@ -1132,14 +1206,14 @@
           document.getElementById('ticketIdView').innerText = tk;
           document.getElementById('ticketOk').classList.remove('hidden');
         } else {
-          alert('Error al subir captura a Telegram. Verifica que el archivo no sea muy pesado.');
+          alert('Error al subir comprobante a Telegram. Asegúrate de que la foto no sea demasiado pesada.');
           btn.disabled = false;
-          btn.innerHTML = `<span>Finalizar y Enviar Ticket a Telegram</span>`;
+          btn.innerHTML = `<span>Verificar y Enviar Ticket a Telegram</span>`;
         }
       } catch (err) {
-        alert('Error de conexión.');
+        alert('Error de conexión al enviar el comprobante.');
         btn.disabled = false;
-        btn.innerHTML = `<span>Finalizar y Enviar Ticket a Telegram</span>`;
+        btn.innerHTML = `<span>Verificar y Enviar Ticket a Telegram</span>`;
       }
     });
 
