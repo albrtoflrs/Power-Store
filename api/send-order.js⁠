@@ -1,0 +1,45 @@
+export default async function handler(req, res) {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Método no permitido' });
+  }
+
+  try {
+    const BOT_TOKEN = process.env.BOT_TOKEN;
+    const CHAT_ID = process.env.CHAT_ID;
+
+    const { game, package: pkgName, price, playerId, phone, payerDoc, payerPhone, bank, ref } = req.body;
+
+    const caption = `🚨 *NUEVA ORDEN VALIDADA - POWER STORE* 🚨\n\n` +
+                    `🎮 *Juego:* ${game}\n` +
+                    `📦 *Paquete:* ${pkgName} ($${price.toFixed(2)})\n` +
+                    `🆔 *ID Jugador:* \`${playerId}\`\n` +
+                    `📱 *WhatsApp Contacto:* ${phone}\n\n` +
+                    `🔍 *DATOS DEL PAGADOR (CONCILIACIÓN):*\n` +
+                    `👤 *Cédula Emisor:* \`${payerDoc}\`\n` +
+                    `📞 *Teléfono Emisor:* \`${payerPhone}\`\n` +
+                    `🏦 *Banco Origen:* ${bank}\n` +
+                    `🧾 *Referencia:* \`${ref}\`\n\n` +
+                    `⚠️ *Destino:* Mercantil 04243058657 - V33269903\n` +
+                    `🛡️ *Anti-Bot:* Superado con éxito.`;
+
+    const telegramUrl = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+    
+    const response = await fetch(telegramUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat_id: CHAT_ID,
+        text: caption,
+        parse_mode: 'Markdown'
+      })
+    });
+
+    if (response.ok) {
+      return res.status(200).json({ success: true });
+    } else {
+      return res.status(500).json({ error: 'Error al notificar a Telegram' });
+    }
+  } catch (error) {
+    return res.status(500).json({ error: 'Error interno del servidor' });
+  }
+}
