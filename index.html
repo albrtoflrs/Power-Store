@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Power Store | Recargas Gamer Venezuela & LATAM</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex items-center justify-center p-3 sm:p-6 selection:bg-amber-400 selection:text-black">
+
+  <div class="bg-slate-900/90 backdrop-blur-md border border-slate-800 rounded-3xl shadow-2xl shadow-amber-500/5 w-full max-w-lg p-5 sm:p-8 relative overflow-hidden">
+    
+    <!-- Efectos de iluminación de fondo -->
+    <div class="absolute -top-20 -right-20 w-44 h-44 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-20 -left-20 w-44 h-44 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <!-- Encabezado Power Store -->
+    <div class="text-center mb-7 relative z-10">
+      <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-tr from-amber-500 to-yellow-300 text-slate-950 mb-3 shadow-lg shadow-amber-500/20 rotate-1">
+        <i class="fa-solid fa-bolt text-3xl"></i>
+      </div>
+      <h1 class="text-3xl font-black tracking-tight text-white uppercase italic">
+        POWER <span class="text-amber-400">STORE</span>
+      </h1>
+      <p class="text-xs text-slate-400 mt-1 font-medium tracking-wide">Recargas Inmediatas • Venezuela & LATAM</p>
+    </div>
+
+    <!-- Formulario de Compra -->
+    <form id="orderForm" class="space-y-4 relative z-10">
+      
+      <!-- 1. Selector de Juego -->
+      <div>
+        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">
+          <i class="fa-solid fa-gamepad text-amber-400 mr-1"></i> 1. Selecciona el Juego
+        </label>
+        <select id="game" class="w-full bg-slate-800/90 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 transition" required>
+          <option value="Free Fire">🔥 Free Fire (Diamantes)</option>
+          <option value="Roblox">🟩 Roblox (Robux)</option>
+          <option value="Call of Duty Mobile">🎯 Call of Duty: Mobile (CP)</option>
+          <option value="Brawl Stars">⭐ Brawl Stars (Gemas)</option>
+        </select>
+      </div>
+
+      <!-- 2. ID del Jugador -->
+      <div>
+        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">
+          <i class="fa-solid fa-id-card text-amber-400 mr-1"></i> 2. ID o Usuario de la Cuenta
+        </label>
+        <input type="text" id="playerId" placeholder="Ej: 2948104820 o TuNombre" class="w-full bg-slate-800/90 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 transition" required>
+      </div>
+
+      <!-- 3. Paquete -->
+      <div>
+        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">
+          <i class="fa-solid fa-box-open text-amber-400 mr-1"></i> 3. Paquete a Recargar
+        </label>
+        <select id="package" class="w-full bg-slate-800/90 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 transition" required>
+          <option value="Pack Básico: 100 Diamantes / 80 Robux (~$1.10)">Pack Inicial (~$1.10)</option>
+          <option value="Pack Medio: 310 Diamantes / 400 Robux (~$3.50)">Pack Medio (~$3.50)</option>
+          <option value="Pack Gamer: 520 Diamantes / 800 Robux (~$5.50)">Pack Gamer (~$5.50)</option>
+          <option value="Pase Elite / Pro: 1060 Diamantes / 1700 Robux (~$10.50)">Pase Elite / Pro (~$10.50)</option>
+        </select>
+      </div>
+
+      <!-- 4. Método de Pago -->
+      <div>
+        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">
+          <i class="fa-solid fa-wallet text-amber-400 mr-1"></i> 4. Método de Pago
+        </label>
+        <select id="paymentMethod" class="w-full bg-slate-800/90 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 transition" required>
+          <option value="Pago Móvil (Venezuela)">🇻🇪 Pago Móvil (Venezuela)</option>
+          <option value="Binance Pay (USDT)">🟡 Binance Pay (USDT)</option>
+          <option value="Zinli">🟣 Zinli</option>
+          <option value="Wally Tech">🔵 Wally</option>
+          <option value="Transferencia Bancaria">🏦 Transferencia Bancaria</option>
+        </select>
+      </div>
+
+      <!-- 5. Referencia -->
+      <div>
+        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">
+          <i class="fa-solid fa-receipt text-amber-400 mr-1"></i> 5. Número de Referencia o ID de Pago
+        </label>
+        <input type="text" id="reference" placeholder="Últimos 6 dígitos o ID de Binance" class="w-full bg-slate-800/90 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 transition" required>
+      </div>
+
+      <!-- 6. Contacto -->
+      <div>
+        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">
+          <i class="fa-brands fa-whatsapp text-amber-400 mr-1"></i> 6. WhatsApp o Telegram del Cliente
+        </label>
+        <input type="text" id="contact" placeholder="Ej: +58 412 1234567" class="w-full bg-slate-800/90 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 transition" required>
+      </div>
+
+      <!-- Botón Enviar -->
+      <button type="submit" id="btnSubmit" class="w-full bg-gradient-to-r from-amber-500 to-yellow-400 hover:from-amber-400 hover:to-yellow-300 text-slate-950 font-black py-3.5 px-4 rounded-xl transition duration-200 flex items-center justify-center gap-2 shadow-lg shadow-amber-500/25 mt-3 active:scale-[0.99]">
+        <span>NOTIFICAR PAGO Y GENERAR TICKET</span>
+        <i class="fa-solid fa-bolt"></i>
+      </button>
+    </form>
+
+    <!-- Confirmación del Ticket -->
+    <div id="statusMessage" class="hidden text-center py-6 relative z-10">
+      <div class="w-16 h-16 bg-amber-500/10 text-amber-400 border border-amber-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+        <i class="fa-solid fa-bolt-lightning text-3xl"></i>
+      </div>
+      <h2 class="text-xl font-bold text-white mb-1">¡Ticket Registrado en Power Store!</h2>
+      <p class="text-xs text-slate-400 mb-4">Hemos recibido tu comprobante de pago.</p>
+      
+      <div class="bg-slate-800/80 border border-slate-700 rounded-xl p-4 mb-5 inline-block w-full">
+        <span class="text-xs uppercase text-slate-400 font-semibold block mb-1">Tu Número de Orden</span>
+        <span id="ticketNumber" class="text-2xl font-mono font-black text-amber-400 tracking-wider"></span>
+      </div>
+
+      <p class="text-xs text-slate-300 leading-relaxed max-w-sm mx-auto">
+        Nuestro equipo está validando el pago vía Telegram. Recibirás tu recarga en tu cuenta en un lapso estimado de 5 a 15 minutos.
+      </p>
+    </div>
+
+  </div>
+
+  <script>
+    // ==========================================
+    // ⚙️ CREDENCIALES CONFIGURADAS DE TELEGRAM
+    // ==========================================
+    const TELEGRAM_BOT_TOKEN = "8820908977:AAEYmoIhzajWmFERHZ6qRUPOh7f9RxjSQlY";
+    const TELEGRAM_CHAT_ID = "8820908977";
+
+    const form = document.getElementById('orderForm');
+    const statusMessage = document.getElementById('statusMessage');
+    const ticketNumberDisplay = document.getElementById('ticketNumber');
+    const btnSubmit = document.getElementById('btnSubmit');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      btnSubmit.disabled = true;
+      btnSubmit.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> <span>Enviando a Power Store...</span>`;
+
+      // Código de orden único (Ej: #PW-4829)
+      const ticketId = '#PW-' + Math.floor(1000 + Math.random() * 9000);
+
+      const game = document.getElementById('game').value;
+      const playerId = document.getElementById('playerId').value;
+      const packageSelected = document.getElementById('package').value;
+      const paymentMethod = document.getElementById('paymentMethod').value;
+      const reference = document.getElementById('reference').value;
+      const contact = document.getElementById('contact').value;
+
+      // Mensaje de alerta formateado para Telegram
+      const message = `⚡ *NUEVA ORDEN - POWER STORE* ⚡\n\n` +
+                      `🎫 *Orden:* \`${ticketId}\`\n` +
+                      `🎮 *Juego:* ${game}\n` +
+                      `🆔 *Player ID:* \`${playerId}\`\n` +
+                      `📦 *Paquete:* ${packageSelected}\n` +
+                      `💳 *Método:* ${paymentMethod}\n` +
+                      `🧾 *Referencia:* \`${reference}\`\n` +
+                      `📱 *Contacto:* ${contact}\n\n` +
+                      `🕒 *Hora:* ${new Date().toLocaleTimeString()} | ${new Date().toLocaleDateString()}`;
+
+      try {
+        const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            chat_id: TELEGRAM_CHAT_ID,
+            text: message,
+            parse_mode: 'Markdown'
+          })
+        });
+
+        if (response.ok) {
+          form.classList.add('hidden');
+          ticketNumberDisplay.innerText = ticketId;
+          statusMessage.classList.remove('hidden');
+        } else {
+          alert('Error al conectar con el servidor de Telegram. Asegúrate de haberle dado "/start" a tu bot en Telegram.');
+          btnSubmit.disabled = false;
+          btnSubmit.innerHTML = `<span>NOTIFICAR PAGO Y GENERAR TICKET</span> <i class="fa-solid fa-bolt"></i>`;
+        }
+      } catch (err) {
+        console.error(err);
+        alert('Error de conexión al enviar el ticket.');
+        btnSubmit.disabled = false;
+        btnSubmit.innerHTML = `<span>NOTIFICAR PAGO Y GENERAR TICKET</span> <i class="fa-solid fa-bolt"></i>`;
+      }
+    });
+  </script>
+</body>
+</html>
