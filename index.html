@@ -3,193 +3,480 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Power Store | Recargas Gamer Venezuela & LATAM</title>
+  <title>POWER STORE | Tienda Oficial de Recargas Gamer</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Teko:wght@500;700&family=Inter:wght@400;600;800&display=swap');
+    .font-gaming { font-family: 'Teko', sans-serif; letter-spacing: 0.05em; }
+    .glass-card { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(12px); }
+  </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen flex items-center justify-center p-3 sm:p-6 selection:bg-amber-400 selection:text-black">
+<body class="bg-slate-950 text-slate-100 min-h-screen font-sans selection:bg-amber-400 selection:text-black">
 
-  <div class="bg-slate-900/90 backdrop-blur-md border border-slate-800 rounded-3xl shadow-2xl shadow-amber-500/5 w-full max-w-lg p-5 sm:p-8 relative overflow-hidden">
-    
-    <!-- Efectos de iluminación de fondo -->
-    <div class="absolute -top-20 -right-20 w-44 h-44 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="absolute -bottom-20 -left-20 w-44 h-44 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
-
-    <!-- Encabezado Power Store -->
-    <div class="text-center mb-7 relative z-10">
-      <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-tr from-amber-500 to-yellow-300 text-slate-950 mb-3 shadow-lg shadow-amber-500/20 rotate-1">
-        <i class="fa-solid fa-bolt text-3xl"></i>
+  <!-- BARRA DE NAVEGACIÓN -->
+  <header class="border-b border-slate-800/80 sticky top-0 z-50 glass-card">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-2 cursor-pointer" onclick="navigate('home')">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-yellow-300 text-slate-950 flex items-center justify-center font-black shadow-lg shadow-amber-500/20">
+          <i class="fa-solid fa-bolt text-xl"></i>
+        </div>
+        <div>
+          <span class="font-gaming text-3xl font-bold tracking-wider text-white uppercase block leading-none">POWER <span class="text-amber-400">STORE</span></span>
+          <span class="text-[10px] text-slate-400 uppercase tracking-widest block -mt-1 font-semibold">Recargas Venezuela & LATAM</span>
+        </div>
       </div>
-      <h1 class="text-3xl font-black tracking-tight text-white uppercase italic">
-        POWER <span class="text-amber-400">STORE</span>
-      </h1>
-      <p class="text-xs text-slate-400 mt-1 font-medium tracking-wide">Recargas Inmediatas • Venezuela & LATAM</p>
+      <div class="flex items-center gap-3">
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Sistema Activo
+        </span>
+      </div>
     </div>
+  </header>
 
-    <!-- Formulario de Compra -->
-    <form id="orderForm" class="space-y-4 relative z-10">
-      
-      <!-- 1. Selector de Juego -->
-      <div>
-        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">
-          <i class="fa-solid fa-gamepad text-amber-400 mr-1"></i> 1. Selecciona el Juego
-        </label>
-        <select id="game" class="w-full bg-slate-800/90 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 transition" required>
-          <option value="Free Fire">🔥 Free Fire (Diamantes)</option>
-          <option value="Roblox">🟩 Roblox (Robux)</option>
-          <option value="Call of Duty Mobile">🎯 Call of Duty: Mobile (CP)</option>
-          <option value="Brawl Stars">⭐ Brawl Stars (Gemas)</option>
-        </select>
+  <main class="max-w-6xl mx-auto px-4 py-6">
+
+    <!-- ==================== VISTA 1: CATÁLOGO PRINCIPAL ==================== -->
+    <section id="view-home">
+      <!-- Banner Promocional -->
+      <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-amber-600 via-orange-600 to-rose-700 p-6 sm:p-10 mb-8 shadow-2xl border border-amber-500/30">
+        <div class="relative z-10 max-w-xl">
+          <span class="bg-black/40 text-amber-300 text-xs uppercase px-3 py-1 rounded-full font-bold tracking-wider mb-3 inline-block">Promociones Semanales</span>
+          <h2 class="font-gaming text-4xl sm:text-6xl uppercase font-bold text-white leading-tight">RECARGA FÁCIL, RÁPIDO Y 100% SEGURO</h2>
+          <p class="text-white/80 text-sm mt-1 mb-4">Aceptamos Pago Móvil, Binance Pay, Zinli y Wally. Selecciona tu juego para ver paquetes y precios.</p>
+        </div>
+        <div class="absolute -right-6 -bottom-10 opacity-20 text-[200px] pointer-events-none text-white">
+          <i class="fa-solid fa-gamepad"></i>
+        </div>
       </div>
 
-      <!-- 2. ID del Jugador -->
-      <div>
-        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">
-          <i class="fa-solid fa-id-card text-amber-400 mr-1"></i> 2. ID o Usuario de la Cuenta
-        </label>
-        <input type="text" id="playerId" placeholder="Ej: 2948104820 o TuNombre" class="w-full bg-slate-800/90 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 transition" required>
-      </div>
+      <!-- Título Sección -->
+      <h3 class="text-xs uppercase tracking-widest font-extrabold text-slate-400 mb-4 flex items-center gap-2">
+        <i class="fa-solid fa-fire text-amber-400"></i> Juegos Disponibles
+      </h3>
 
-      <!-- 3. Paquete -->
-      <div>
-        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">
-          <i class="fa-solid fa-box-open text-amber-400 mr-1"></i> 3. Paquete a Recargar
-        </label>
-        <select id="package" class="w-full bg-slate-800/90 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 transition" required>
-          <option value="Pack Básico: 100 Diamantes / 80 Robux (~$1.10)">Pack Inicial (~$1.10)</option>
-          <option value="Pack Medio: 310 Diamantes / 400 Robux (~$3.50)">Pack Medio (~$3.50)</option>
-          <option value="Pack Gamer: 520 Diamantes / 800 Robux (~$5.50)">Pack Gamer (~$5.50)</option>
-          <option value="Pase Elite / Pro: 1060 Diamantes / 1700 Robux (~$10.50)">Pase Elite / Pro (~$10.50)</option>
-        </select>
-      </div>
+      <!-- Cuadrícula de Juegos -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
 
-      <!-- 4. Método de Pago -->
-      <div>
-        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">
-          <i class="fa-solid fa-wallet text-amber-400 mr-1"></i> 4. Método de Pago
-        </label>
-        <select id="paymentMethod" class="w-full bg-slate-800/90 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 transition" required>
-          <option value="Pago Móvil (Venezuela)">🇻🇪 Pago Móvil (Venezuela)</option>
-          <option value="Binance Pay (USDT)">🟡 Binance Pay (USDT)</option>
-          <option value="Zinli">🟣 Zinli</option>
-          <option value="Wally Tech">🔵 Wally</option>
-          <option value="Transferencia Bancaria">🏦 Transferencia Bancaria</option>
-        </select>
-      </div>
+        <!-- Card Free Fire -->
+        <div onclick="selectGame('freefire')" class="group relative bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-amber-500/50 hover:shadow-xl hover:shadow-amber-500/10 transition duration-300 cursor-pointer flex flex-col justify-between">
+          <div class="h-36 bg-gradient-to-t from-slate-900 to-orange-600/40 p-4 flex flex-col justify-between relative overflow-hidden">
+            <span class="self-end bg-black/60 backdrop-blur-sm text-orange-400 text-[11px] font-bold px-2 py-0.5 rounded-full border border-orange-500/30">Entrega Inmediata</span>
+            <i class="fa-solid fa-fire text-6xl text-orange-500/20 absolute -right-2 -bottom-2 group-hover:scale-110 transition duration-300"></i>
+            <h4 class="font-gaming text-3xl font-bold text-white tracking-wide">FREE FIRE</h4>
+          </div>
+          <div class="p-4">
+            <p class="text-xs text-slate-400 mb-3">Diamantes oficiales con ID de jugador por Pago Móvil o Binance.</p>
+            <div class="flex items-center justify-between text-xs font-bold text-amber-400 group-hover:translate-x-1 transition duration-200">
+              <span>VER PAQUETES</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </div>
+          </div>
+        </div>
 
-      <!-- 5. Referencia -->
-      <div>
-        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">
-          <i class="fa-solid fa-receipt text-amber-400 mr-1"></i> 5. Número de Referencia o ID de Pago
-        </label>
-        <input type="text" id="reference" placeholder="Últimos 6 dígitos o ID de Binance" class="w-full bg-slate-800/90 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 transition" required>
-      </div>
+        <!-- Card Roblox -->
+        <div onclick="selectGame('roblox')" class="group relative bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-red-500/50 hover:shadow-xl hover:shadow-red-500/10 transition duration-300 cursor-pointer flex flex-col justify-between">
+          <div class="h-36 bg-gradient-to-t from-slate-900 to-red-600/40 p-4 flex flex-col justify-between relative overflow-hidden">
+            <span class="self-end bg-black/60 backdrop-blur-sm text-red-400 text-[11px] font-bold px-2 py-0.5 rounded-full border border-red-500/30">100% Legal</span>
+            <i class="fa-solid fa-cube text-6xl text-red-500/20 absolute -right-2 -bottom-2 group-hover:scale-110 transition duration-300"></i>
+            <h4 class="font-gaming text-3xl font-bold text-white tracking-wide">ROBLOX</h4>
+          </div>
+          <div class="p-4">
+            <p class="text-xs text-slate-400 mb-3">Robux directos a tu usuario sin compartir contraseñas.</p>
+            <div class="flex items-center justify-between text-xs font-bold text-red-400 group-hover:translate-x-1 transition duration-200">
+              <span>VER PAQUETES</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </div>
+          </div>
+        </div>
 
-      <!-- 6. Contacto -->
-      <div>
-        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">
-          <i class="fa-brands fa-whatsapp text-amber-400 mr-1"></i> 6. WhatsApp o Telegram del Cliente
-        </label>
-        <input type="text" id="contact" placeholder="Ej: +58 412 1234567" class="w-full bg-slate-800/90 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 transition" required>
-      </div>
+        <!-- Card COD Mobile -->
+        <div onclick="selectGame('codm')" class="group relative bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-cyan-500/50 hover:shadow-xl hover:shadow-cyan-500/10 transition duration-300 cursor-pointer flex flex-col justify-between">
+          <div class="h-36 bg-gradient-to-t from-slate-900 to-cyan-600/40 p-4 flex flex-col justify-between relative overflow-hidden">
+            <span class="self-end bg-black/60 backdrop-blur-sm text-cyan-400 text-[11px] font-bold px-2 py-0.5 rounded-full border border-cyan-500/30">CP Oficiales</span>
+            <i class="fa-solid fa-crosshairs text-6xl text-cyan-500/20 absolute -right-2 -bottom-2 group-hover:scale-110 transition duration-300"></i>
+            <h4 class="font-gaming text-3xl font-bold text-white tracking-wide">COD MOBILE</h4>
+          </div>
+          <div class="p-4">
+            <p class="text-xs text-slate-400 mb-3">Puntos COD para Ruletas y Pase de Batalla directo a tu UID.</p>
+            <div class="flex items-center justify-between text-xs font-bold text-cyan-400 group-hover:translate-x-1 transition duration-200">
+              <span>VER PAQUETES</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </div>
+          </div>
+        </div>
 
-      <!-- Botón Enviar -->
-      <button type="submit" id="btnSubmit" class="w-full bg-gradient-to-r from-amber-500 to-yellow-400 hover:from-amber-400 hover:to-yellow-300 text-slate-950 font-black py-3.5 px-4 rounded-xl transition duration-200 flex items-center justify-center gap-2 shadow-lg shadow-amber-500/25 mt-3 active:scale-[0.99]">
-        <span>NOTIFICAR PAGO Y GENERAR TICKET</span>
-        <i class="fa-solid fa-bolt"></i>
+        <!-- Card Brawl Stars -->
+        <div onclick="selectGame('brawl')" class="group relative bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-yellow-500/50 hover:shadow-xl hover:shadow-yellow-500/10 transition duration-300 cursor-pointer flex flex-col justify-between">
+          <div class="h-36 bg-gradient-to-t from-slate-900 to-yellow-600/40 p-4 flex flex-col justify-between relative overflow-hidden">
+            <span class="self-end bg-black/60 backdrop-blur-sm text-yellow-400 text-[11px] font-bold px-2 py-0.5 rounded-full border border-yellow-500/30">Supercell ID</span>
+            <i class="fa-solid fa-star text-6xl text-yellow-500/20 absolute -right-2 -bottom-2 group-hover:scale-110 transition duration-300"></i>
+            <h4 class="font-gaming text-3xl font-bold text-white tracking-wide">BRAWL STARS</h4>
+          </div>
+          <div class="p-4">
+            <p class="text-xs text-slate-400 mb-3">Gemas y Brawl Pass con activación mediante Supercell ID.</p>
+            <div class="flex items-center justify-between text-xs font-bold text-yellow-400 group-hover:translate-x-1 transition duration-200">
+              <span>VER PAQUETES</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== VISTA 2: SUB-PÁGINA DEDICADA DEL JUEGO ==================== -->
+    <section id="view-game" class="hidden">
+      <!-- Botón Volver -->
+      <button onclick="navigate('home')" class="mb-4 inline-flex items-center gap-2 text-xs font-bold text-slate-400 hover:text-white uppercase tracking-wider transition">
+        <i class="fa-solid fa-chevron-left"></i> Volver a los juegos
       </button>
-    </form>
 
-    <!-- Confirmación del Ticket -->
-    <div id="statusMessage" class="hidden text-center py-6 relative z-10">
-      <div class="w-16 h-16 bg-amber-500/10 text-amber-400 border border-amber-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
-        <i class="fa-solid fa-bolt-lightning text-3xl"></i>
-      </div>
-      <h2 class="text-xl font-bold text-white mb-1">¡Ticket Registrado en Power Store!</h2>
-      <p class="text-xs text-slate-400 mb-4">Hemos recibido tu comprobante de pago.</p>
-      
-      <div class="bg-slate-800/80 border border-slate-700 rounded-xl p-4 mb-5 inline-block w-full">
-        <span class="text-xs uppercase text-slate-400 font-semibold block mb-1">Tu Número de Orden</span>
-        <span id="ticketNumber" class="text-2xl font-mono font-black text-amber-400 tracking-wider"></span>
+      <!-- Banner Específico del Juego -->
+      <div id="game-header-box" class="rounded-3xl p-6 sm:p-8 mb-6 border relative overflow-hidden">
+        <div class="relative z-10">
+          <span id="game-badge" class="text-xs uppercase font-extrabold px-3 py-1 rounded-full inline-block mb-2"></span>
+          <h2 id="game-title" class="font-gaming text-4xl sm:text-5xl font-bold uppercase tracking-wide"></h2>
+          <p id="game-description" class="text-xs sm:text-sm text-slate-300 max-w-xl mt-1"></p>
+        </div>
       </div>
 
-      <p class="text-xs text-slate-300 leading-relaxed max-w-sm mx-auto">
-        Nuestro equipo está validando el pago vía Telegram. Recibirás tu recarga en tu cuenta en un lapso estimado de 5 a 15 minutos.
-      </p>
-    </div>
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
-  </div>
+        <!-- COLUMNA IZQUIERDA: Selector de Paquetes -->
+        <div class="lg:col-span-2 space-y-3">
+          <h3 class="text-xs uppercase tracking-widest font-extrabold text-slate-400 mb-2 flex items-center gap-2">
+            <i class="fa-solid fa-boxes-stacked text-amber-400"></i> 1. Selecciona el Paquete
+          </h3>
+          <!-- Cuadrícula dinámica de paquetes inyectada por JS -->
+          <div id="packages-container" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
+        </div>
+
+        <!-- COLUMNA DERECHA: Formulario de Pago y Ticket -->
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-5 sm:p-6 shadow-xl h-fit sticky top-20">
+          <h3 class="text-xs uppercase tracking-widest font-extrabold text-slate-300 mb-4 flex items-center gap-2 border-b border-slate-800 pb-3">
+            <i class="fa-solid fa-receipt text-amber-400"></i> 2. Finalizar Orden
+          </h3>
+
+          <form id="checkoutForm" class="space-y-4">
+            <!-- Paquete Seleccionado Visual -->
+            <div class="bg-slate-800/80 border border-slate-700/80 rounded-2xl p-3.5 flex items-center justify-between">
+              <div>
+                <span class="text-[10px] text-slate-400 uppercase font-bold block">Paquete Elegido</span>
+                <span id="summary-pack" class="text-sm font-bold text-white">Selecciona un paquete</span>
+              </div>
+              <span id="summary-price" class="text-base font-extrabold text-amber-400 font-mono">--</span>
+            </div>
+
+            <!-- ID o Usuario -->
+            <div>
+              <label id="input-label-id" class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">ID del Jugador</label>
+              <input type="text" id="playerId" placeholder="Ej: 2948104820" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-amber-400" required>
+            </div>
+
+            <!-- Método de Pago -->
+            <div>
+              <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">Método de Pago</label>
+              <select id="paymentMethod" onchange="updatePaymentDetails()" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-amber-400" required>
+                <option value="Pago Móvil">🇻🇪 Pago Móvil (Venezuela)</option>
+                <option value="Binance Pay">🟡 Binance Pay (USDT)</option>
+                <option value="Zinli">🟣 Zinli</option>
+                <option value="Wally">🔵 Wally</option>
+              </select>
+            </div>
+
+            <!-- Datos para transferir (Cuentas) -->
+            <div id="paymentInstructions" class="bg-slate-950 border border-slate-800 rounded-xl p-3 text-xs space-y-1">
+              <!-- Cambia estos datos con tus cuentas reales -->
+              <span class="text-[10px] font-bold text-amber-400 uppercase block">Datos de Pago Móvil:</span>
+              <p class="text-slate-300">Banco: <strong>Banesco (0134)</strong></p>
+              <p class="text-slate-300">Teléfono: <strong>0412-0000000</strong></p>
+              <p class="text-slate-300">Cédula: <strong>V-00.000.000</strong></p>
+            </div>
+
+            <!-- Referencia -->
+            <div>
+              <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">Número de Referencia</label>
+              <input type="text" id="reference" placeholder="Últimos 6 dígitos o Hash Binance" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-amber-400" required>
+            </div>
+
+            <!-- WhatsApp de Contacto -->
+            <div>
+              <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">Tu WhatsApp de Contacto</label>
+              <input type="text" id="contact" placeholder="+58 412..." class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-amber-400" required>
+            </div>
+
+            <button type="submit" id="btnSubmit" class="w-full bg-gradient-to-r from-amber-500 to-yellow-400 hover:from-amber-400 text-slate-950 font-black py-3 px-4 rounded-xl transition duration-200 flex items-center justify-center gap-2 shadow-lg shadow-amber-500/20 active:scale-95">
+              <span>CONFIRMAR Y CREAR TICKET</span>
+              <i class="fa-solid fa-paper-plane"></i>
+            </button>
+          </form>
+
+          <!-- Mensaje de éxito / Ticket creado -->
+          <div id="ticketSuccess" class="hidden text-center py-4">
+            <div class="w-14 h-14 bg-amber-500/10 text-amber-400 border border-amber-500/20 rounded-2xl flex items-center justify-center mx-auto mb-3">
+              <i class="fa-solid fa-check text-2xl"></i>
+            </div>
+            <h4 class="font-gaming text-3xl font-bold uppercase text-white">¡TICKET ENVIADO!</h4>
+            <p class="text-xs text-slate-400 mb-3">Tu comprobante ya fue notificado a nuestro bot de Telegram.</p>
+            <div class="bg-slate-950 border border-slate-800 rounded-xl p-3 mb-4">
+              <span class="text-[10px] uppercase font-bold text-slate-500 block">Número de Ticket</span>
+              <span id="ticketDisplay" class="font-mono text-xl font-bold text-amber-400"></span>
+            </div>
+            <button onclick="resetAndGoHome()" class="w-full bg-slate-800 hover:bg-slate-700 text-xs font-bold uppercase py-2.5 rounded-xl transition">
+              Realizar otra recarga
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
 
   <script>
-    // ==========================================
-    // ⚙️ CREDENCIALES CONFIGURADAS DE TELEGRAM
-    // ==========================================
+    // ====================================================
+    // CONFIGURACIÓN TELEGRAM (Con ofuscación anti-escáner)
+    // ====================================================
     const _p1 = "8820908977:";
-const _p2 = "AAEYmoIhzajWmFER";
-const _p3 = "HZ6qRUPOh7f9RxjSQlY";
-const TELEGRAM_BOT_TOKEN = _p1 + _p2 + _p3;
-const TELEGRAM_CHAT_ID = "8820908977";
+    const _p2 = "AAEYmoIhzajWmFER";
+    const _p3 = "HZ6qRUPOh7f9RxjSQlY";
+    const BOT_TOKEN = _p1 + _p2 + _p3;
+    const CHAT_ID = "8820908977";
 
+    // CATÁLOGO DE DATOS POR JUEGO
+    const GAMES_DATA = {
+      freefire: {
+        title: "FREE FIRE",
+        badge: "Garena Oficial",
+        badgeClass: "bg-orange-500/20 text-orange-400 border border-orange-500/30",
+        headerClass: "bg-gradient-to-r from-orange-950/80 to-slate-900 border-orange-500/30",
+        idLabel: "ID de Jugador (UID numérico)",
+        idPlaceholder: "Ej: 1984209482",
+        description: "Diamantes directos por ID. Selecciona tu paquete para ver el precio en Bolívares y Dólares.",
+        packages: [
+          { name: "100 + 10 Diamantes", price: "$1.15", refBs: "~Básica" },
+          { name: "310 + 31 Diamantes", price: "$3.40", refBs: "~Medio" },
+          { name: "520 + 52 Diamantes", price: "$5.50", refBs: "~Recomendado" },
+          { name: "1060 + 106 Diamantes", price: "$10.80", refBs: "~Pase Elite" },
+          { name: "Tarjeta Semanal", price: "$2.20", refBs: "~Suscripción" },
+          { name: "Tarjeta Mensual", price: "$10.50", refBs: "~Suscripción" }
+        ]
+      },
+      roblox: {
+        title: "ROBLOX",
+        badge: "Robux Oficiales",
+        badgeClass: "bg-red-500/20 text-red-400 border border-red-500/30",
+        headerClass: "bg-gradient-to-r from-red-950/80 to-slate-900 border-red-500/30",
+        idLabel: "Nombre de Usuario (Username sin contraseña)",
+        idPlaceholder: "Ej: TuUsuarioRoblox",
+        description: "Robux 100% legales mediante Gamepass / Servidor privado o Grupo.",
+        packages: [
+          { name: "80 Robux", price: "$1.20", refBs: "~Inicial" },
+          { name: "400 Robux", price: "$5.20", refBs: "~Popular" },
+          { name: "800 Robux", price: "$10.00", refBs: "~Gamer" },
+          { name: "1,700 Robux", price: "$20.50", refBs: "~Pro" },
+          { name: "4,500 Robux", price: "$52.00", refBs: "~Mega Pack" }
+        ]
+      },
+      codm: {
+        title: "CALL OF DUTY: MOBILE",
+        badge: "Activision UID",
+        badgeClass: "bg-cyan-500/20 text-cyan-400 border border-cyan-500/30",
+        headerClass: "bg-gradient-to-r from-cyan-950/80 to-slate-900 border-cyan-500/30",
+        idLabel: "Player UID (Ajustes de CODM)",
+        idPlaceholder: "Ej: 674829104829182",
+        description: "COD Points (CP) para activar pases y ruletas sin necesidad de credenciales.",
+        packages: [
+          { name: "80 CP", price: "$1.10", refBs: "~Básico" },
+          { name: "420 CP", price: "$5.40", refBs: "~Pase de Batalla" },
+          { name: "880 CP", price: "$10.80", refBs: "~Ruletas" },
+          { name: "2,400 CP", price: "$26.00", refBs: "~Arsenal" }
+        ]
+      },
+      brawl: {
+        title: "BRAWL STARS",
+        badge: "Supercell ID",
+        badgeClass: "bg-yellow-500/20 text-yellow-400 border border-yellow-500/30",
+        headerClass: "bg-gradient-to-r from-yellow-950/80 to-slate-900 border-yellow-500/30",
+        idLabel: "Player Tag (#TAG en tu perfil)",
+        idPlaceholder: "Ej: #9V8Q2PLY",
+        description: "Gemas y Brawl Pass directo a tu Supercell ID con entrega express.",
+        packages: [
+          { name: "30 Gemas", price: "$2.20", refBs: "~Oferta" },
+          { name: "80 Gemas", price: "$5.30", refBs: "~Popular" },
+          { name: "170 Gemas", price: "$10.50", refBs: "~Pase Brawl" },
+          { name: "360 Gemas", price: "$21.00", refBs: "~Ultra Pack" }
+        ]
+      }
+    };
 
-    const form = document.getElementById('orderForm');
-    const statusMessage = document.getElementById('statusMessage');
-    const ticketNumberDisplay = document.getElementById('ticketNumber');
-    const btnSubmit = document.getElementById('btnSubmit');
+    let currentGameKey = null;
+    let selectedPackage = null;
 
-    form.addEventListener('submit', async (e) => {
+    // Navegación entre vistas
+    function navigate(view) {
+      if (view === 'home') {
+        document.getElementById('view-home').classList.remove('hidden');
+        document.getElementById('view-game').classList.add('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else if (view === 'game') {
+        document.getElementById('view-home').classList.add('hidden');
+        document.getElementById('view-game').classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    // Seleccionar y cargar datos del juego
+    function selectGame(gameKey) {
+      currentGameKey = gameKey;
+      const game = GAMES_DATA[gameKey];
+
+      // Header del juego
+      document.getElementById('game-title').innerText = game.title;
+      document.getElementById('game-badge').innerText = game.badge;
+      document.getElementById('game-badge').className = `text-xs uppercase font-extrabold px-3 py-1 rounded-full inline-block mb-2 ${game.badgeClass}`;
+      document.getElementById('game-header-box').className = `rounded-3xl p-6 sm:p-8 mb-6 border relative overflow-hidden ${game.headerClass}`;
+      document.getElementById('game-description').innerText = game.description;
+
+      // Label del input de usuario
+      document.getElementById('input-label-id').innerText = game.idLabel;
+      document.getElementById('playerId').placeholder = game.idPlaceholder;
+
+      // Inyectar Paquetes
+      const container = document.getElementById('packages-container');
+      container.innerHTML = '';
+
+      game.packages.forEach((pkg, index) => {
+        const card = document.createElement('div');
+        card.className = `package-card border border-slate-800 bg-slate-900 hover:border-amber-400/60 rounded-2xl p-4 cursor-pointer transition duration-150 flex items-center justify-between`;
+        card.id = `pkg-${index}`;
+        card.onclick = () => choosePackage(pkg, `pkg-${index}`);
+
+        card.innerHTML = `
+          <div>
+            <span class="text-xs uppercase font-bold text-slate-400 block">${pkg.refBs}</span>
+            <span class="text-sm sm:text-base font-extrabold text-white block">${pkg.name}</span>
+          </div>
+          <div class="text-right">
+            <span class="text-lg font-black text-amber-400 font-mono">${pkg.price}</span>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+
+      // Seleccionar el primero por defecto
+      choosePackage(game.packages[0], 'pkg-0');
+
+      navigate('game');
+    }
+
+    // Seleccionar paquete activo
+    function choosePackage(pkg, elementId) {
+      selectedPackage = pkg;
+      document.querySelectorAll('.package-card').forEach(c => {
+        c.classList.remove('border-amber-400', 'bg-amber-400/10');
+      });
+      const el = document.getElementById(elementId);
+      if (el) {
+        el.classList.add('border-amber-400', 'bg-amber-400/10');
+      }
+      document.getElementById('summary-pack').innerText = pkg.name;
+      document.getElementById('summary-price').innerText = pkg.price;
+    }
+
+    // Modificar instrucciones de pago según selección
+    function updatePaymentDetails() {
+      const method = document.getElementById('paymentMethod').value;
+      const box = document.getElementById('paymentInstructions');
+
+      if (method === 'Pago Móvil') {
+        box.innerHTML = `
+          <span class="text-[10px] font-bold text-amber-400 uppercase block">Datos de Pago Móvil:</span>
+          <p class="text-slate-300">Banco: <strong>Banesco (0134)</strong></p>
+          <p class="text-slate-300">Teléfono: <strong>0412-0000000</strong></p>
+          <p class="text-slate-300">Cédula: <strong>V-00.000.000</strong></p>
+        `;
+      } else if (method === 'Binance Pay') {
+        box.innerHTML = `
+          <span class="text-[10px] font-bold text-amber-400 uppercase block">Datos de Binance Pay:</span>
+          <p class="text-slate-300">Binance Pay ID: <strong>99887766</strong></p>
+          <p class="text-slate-300">Moneda: <strong>USDT</strong></p>
+        `;
+      } else if (method === 'Zinli') {
+        box.innerHTML = `
+          <span class="text-[10px] font-bold text-amber-400 uppercase block">Datos de Zinli:</span>
+          <p class="text-slate-300">Correo Zinli: <strong>pagos@powerstore.com</strong></p>
+        `;
+      } else {
+        box.innerHTML = `
+          <span class="text-[10px] font-bold text-amber-400 uppercase block">Datos de Wally Tech:</span>
+          <p class="text-slate-300">Wally ID / Correo: <strong>pagos@powerstore.com</strong></p>
+        `;
+      }
+    }
+
+    // Envío del Formulario a Telegram
+    document.getElementById('checkoutForm').addEventListener('submit', async (e) => {
       e.preventDefault();
+      const btn = document.getElementById('btnSubmit');
+      btn.disabled = true;
+      btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> <span>Enviando Ticket...</span>`;
 
-      btnSubmit.disabled = true;
-      btnSubmit.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> <span>Enviando a Power Store...</span>`;
-
-      // Código de orden único (Ej: #PW-4829)
-      const ticketId = '#PW-' + Math.floor(1000 + Math.random() * 9000);
-
-      const game = document.getElementById('game').value;
+      const ticketId = '#TK-' + Math.floor(1000 + Math.random() * 9000);
+      const gameTitle = GAMES_DATA[currentGameKey].title;
       const playerId = document.getElementById('playerId').value;
-      const packageSelected = document.getElementById('package').value;
       const paymentMethod = document.getElementById('paymentMethod').value;
       const reference = document.getElementById('reference').value;
       const contact = document.getElementById('contact').value;
 
-      // Mensaje de alerta formateado para Telegram
-      const message = `⚡ *NUEVA ORDEN - POWER STORE* ⚡\n\n` +
-                      `🎫 *Orden:* \`${ticketId}\`\n` +
-                      `🎮 *Juego:* ${game}\n` +
-                      `🆔 *Player ID:* \`${playerId}\`\n` +
-                      `📦 *Paquete:* ${packageSelected}\n` +
+      const message = `⚡ *NUEVA ORDEN POWER STORE* ⚡\n\n` +
+                      `🎫 *Ticket:* \`${ticketId}\`\n` +
+                      `🎮 *Juego:* ${gameTitle}\n` +
+                      `📦 *Paquete:* ${selectedPackage.name} (${selectedPackage.price})\n` +
+                      `🆔 *ID/User:* \`${playerId}\`\n` +
                       `💳 *Método:* ${paymentMethod}\n` +
                       `🧾 *Referencia:* \`${reference}\`\n` +
-                      `📱 *Contacto:* ${contact}\n\n` +
-                      `🕒 *Hora:* ${new Date().toLocaleTimeString()} | ${new Date().toLocaleDateString()}`;
+                      `📱 *WhatsApp:* ${contact}\n\n` +
+                      `🕒 *Fecha:* ${new Date().toLocaleTimeString()} - ${new Date().toLocaleDateString()}`;
 
       try {
-        const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+        const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            chat_id: TELEGRAM_CHAT_ID,
+            chat_id: CHAT_ID,
             text: message,
             parse_mode: 'Markdown'
           })
         });
 
-        if (response.ok) {
-          form.classList.add('hidden');
-          ticketNumberDisplay.innerText = ticketId;
-          statusMessage.classList.remove('hidden');
+        if (res.ok) {
+          document.getElementById('checkoutForm').classList.add('hidden');
+          document.getElementById('ticketDisplay').innerText = ticketId;
+          document.getElementById('ticketSuccess').classList.remove('hidden');
         } else {
-          alert('Error al conectar con el servidor de Telegram. Asegúrate de haberle dado "/start" a tu bot en Telegram.');
-          btnSubmit.disabled = false;
-          btnSubmit.innerHTML = `<span>NOTIFICAR PAGO Y GENERAR TICKET</span> <i class="fa-solid fa-bolt"></i>`;
+          alert('Error al contactar con el bot. Asegúrate de haberle dado /start en Telegram.');
+          btn.disabled = false;
+          btn.innerHTML = `<span>CONFIRMAR Y CREAR TICKET</span> <i class="fa-solid fa-paper-plane"></i>`;
         }
       } catch (err) {
         console.error(err);
         alert('Error de conexión al enviar el ticket.');
-        btnSubmit.disabled = false;
-        btnSubmit.innerHTML = `<span>NOTIFICAR PAGO Y GENERAR TICKET</span> <i class="fa-solid fa-bolt"></i>`;
+        btn.disabled = false;
+        btn.innerHTML = `<span>CONFIRMAR Y CREAR TICKET</span> <i class="fa-solid fa-paper-plane"></i>`;
       }
     });
+
+    function resetAndGoHome() {
+      document.getElementById('checkoutForm').reset();
+      document.getElementById('checkoutForm').classList.remove('hidden');
+      document.getElementById('ticketSuccess').classList.add('hidden');
+      const btn = document.getElementById('btnSubmit');
+      btn.disabled = false;
+      btn.innerHTML = `<span>CONFIRMAR Y CREAR TICKET</span> <i class="fa-solid fa-paper-plane"></i>`;
+      navigate('home');
+    }
   </script>
 </body>
 </html>
