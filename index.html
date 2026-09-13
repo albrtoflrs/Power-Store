@@ -3,807 +3,453 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Power Store | Recargas Gamer VIP & Tasas USDT</title>
+  <title>Power Store | Recargas VIP</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@600;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Plus Jakarta Sans', sans-serif; }
-    .font-brand { font-family: 'Teko', sans-serif; letter-spacing: 0.04em; }
-    .glass-nav { background: rgba(10, 15, 30, 0.90); backdrop-filter: blur(16px); }
-    .pkg-selected { border-color: #f59e0b !important; background: rgba(245, 158, 11, 0.12) !important; box-shadow: 0 0 15px rgba(245, 158, 11, 0.25); }
+    .pkg-sel { border-color: #f59e0b !important; background: rgba(245, 158, 11, 0.15) !important; }
   </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen selection:bg-amber-400 selection:text-black pb-16">
+<body class="bg-slate-950 text-slate-100 min-h-screen pb-14 font-sans">
 
-  <!-- BARRA DE NAVEGACIÓN -->
-  <header class="border-b border-slate-800/80 sticky top-0 z-50 glass-nav">
-    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-      
-      <!-- LOGO -->
-      <div class="flex items-center gap-2.5 cursor-pointer" onclick="navigate('home')">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-yellow-300 text-slate-950 flex items-center justify-center font-black shadow-lg shadow-amber-500/20">
-          <i class="fa-solid fa-bolt text-xl"></i>
+  <!-- BARRA SUPERIOR -->
+  <header class="border-b border-slate-800 bg-slate-900/90 backdrop-blur sticky top-0 z-50 p-3">
+    <div class="max-w-5xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-2 cursor-pointer" onclick="navigate('home')">
+        <div class="w-9 h-9 rounded-xl bg-amber-500 text-black flex items-center justify-center font-black">
+          <i class="fa-solid fa-bolt"></i>
         </div>
-        <div>
-          <span class="font-brand text-3xl font-bold tracking-wider text-white uppercase block leading-none">POWER <span class="text-amber-400">STORE</span></span>
-          <span class="text-[9px] text-slate-400 uppercase tracking-widest block font-bold">Venezuela & LATAM</span>
-        </div>
+        <span class="text-xl font-black uppercase text-white">POWER <span class="text-amber-400">STORE</span></span>
       </div>
 
-      <!-- BOTONES DE USUARIO / ACCIONES -->
-      <div class="flex items-center gap-2 sm:gap-3">
-        <!-- Calculadora modal button -->
-        <button onclick="openModal('calculatorModal')" class="p-2 sm:px-3 sm:py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-amber-400 hover:border-amber-400/50 text-xs font-bold transition flex items-center gap-1.5" title="Calculadora de Tasa">
-          <i class="fa-solid fa-calculator"></i>
-          <span class="hidden sm:inline">Calculadora USDT</span>
+      <div class="flex items-center gap-2">
+        <button onclick="openModal('calcModal')" class="px-2.5 py-1.5 rounded-lg bg-slate-800 text-amber-400 text-xs font-bold border border-slate-700">
+          <i class="fa-solid fa-calculator"></i> Tasa Bs
         </button>
-
-        <!-- Botón de Historial / Perfil -->
-        <button id="userHeaderBtn" onclick="handleAuthClick()" class="px-3 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400 hover:bg-amber-500/20 text-xs font-bold transition flex items-center gap-1.5">
-          <i class="fa-solid fa-user"></i>
-          <span id="userHeaderLabel">Ingresar</span>
+        <button onclick="handleUserBtn()" id="userBtn" class="px-2.5 py-1.5 rounded-lg bg-amber-500/10 text-amber-400 text-xs font-bold border border-amber-500/30">
+          <i class="fa-solid fa-user"></i> <span id="userBtnText">Ingresar</span>
         </button>
       </div>
-
     </div>
   </header>
 
-  <!-- BARRA DE TASA EN VIVO -->
-  <div class="bg-slate-900 border-b border-slate-800 px-4 py-2 text-xs">
-    <div class="max-w-6xl mx-auto flex items-center justify-between">
-      <div class="flex items-center gap-2">
-        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-        <span class="text-slate-400">Tasa USDT Ref:</span>
-        <strong id="liveRateDisplay" class="text-amber-400 font-mono font-bold">Bs. 950.00</strong>
-      </div>
-      <button onclick="openModal('calculatorModal')" class="text-[11px] text-slate-400 hover:text-white underline">
-        Convertir Divisas
-      </button>
-    </div>
+  <!-- BARRA DE TASA -->
+  <div class="bg-slate-900 border-b border-slate-800 px-4 py-1.5 text-xs text-center text-slate-400">
+    Tasa USDT Ref: <strong id="tasaDisplay" class="text-amber-400 font-mono">Bs. 950.00</strong>
   </div>
 
-  <main class="max-w-6xl mx-auto px-4 pt-5">
+  <main class="max-w-5xl mx-auto p-4">
 
-    <!-- ==================== VISTA 1: CATÁLOGO PRINCIPAL ==================== -->
+    <!-- VISTA INICIO / CATÁLOGO -->
     <section id="view-home">
-      <!-- HERO BANNER -->
-      <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-amber-600 via-orange-600 to-indigo-950 p-6 sm:p-10 mb-8 border border-amber-500/30 shadow-2xl">
-        <div class="relative z-10 max-w-lg">
-          <span class="bg-black/50 text-amber-300 text-[11px] uppercase px-3 py-1 rounded-full font-extrabold tracking-wider mb-2 inline-flex items-center gap-1.5">
-            <i class="fa-solid fa-crown"></i> Tienda de Recargas Gamer VIP
-          </span>
-          <h1 class="font-brand text-4xl sm:text-6xl uppercase font-bold text-white leading-none mt-2 mb-3">
-            RECARGAS INMEDIATAS EN BOLÍVARES Y USDT
-          </h1>
-          <p class="text-white/80 text-xs sm:text-sm font-medium mb-4">
-            Aceptamos Pago Móvil, Binance Pay, Zinli y Wally. Regístrate como cliente frecuente para guardar tus compras.
-          </p>
-        </div>
-        <i class="fa-solid fa-gamepad absolute -right-6 -bottom-8 text-white/10 text-[200px] pointer-events-none"></i>
+      <div class="rounded-2xl bg-gradient-to-r from-amber-600 to-orange-700 p-6 mb-6 shadow-xl">
+        <h1 class="text-2xl sm:text-4xl font-black uppercase text-white mb-1">RECARGAS GAMER AL MEJOR PRECIO</h1>
+        <p class="text-xs sm:text-sm text-white/90">Pago Móvil, Binance, Zinli y Wally. Selecciona tu juego:</p>
       </div>
 
-      <!-- TÍTULO -->
-      <div class="flex items-center justify-between mb-4">
-        <h2 class="text-xs uppercase tracking-widest font-black text-slate-400 flex items-center gap-2">
-          <i class="fa-solid fa-fire text-amber-400"></i> Selecciona un Juego
-        </h2>
-        <span class="text-xs text-slate-500">Entrega garantizada</span>
-      </div>
-
-      <!-- CUADRÍCULA DE JUEGOS -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
         <!-- Free Fire -->
-        <div onclick="selectGame('freefire')" class="group relative bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-amber-500 transition duration-300 cursor-pointer shadow-lg">
-          <div class="h-44 relative overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Free Fire">
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
-            <span class="absolute top-3 right-3 bg-orange-500/90 text-slate-950 text-[10px] font-black uppercase px-2 py-0.5 rounded-md">Diamantes</span>
-            <div class="absolute bottom-3 left-4">
-              <span class="text-[10px] uppercase font-bold text-amber-400 block tracking-wider">Garena</span>
-              <h3 class="font-brand text-3xl font-bold text-white tracking-wide leading-none">FREE FIRE</h3>
-            </div>
-          </div>
-          <div class="p-4 flex items-center justify-between border-t border-slate-800/80">
-            <span class="text-xs text-slate-400">Desde <strong class="text-white">$1.15</strong></span>
-            <span class="w-8 h-8 rounded-full bg-slate-800 group-hover:bg-amber-400 group-hover:text-black flex items-center justify-center text-xs transition">
-              <i class="fa-solid fa-arrow-right"></i>
-            </span>
+        <div onclick="selectGame('freefire')" class="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden cursor-pointer hover:border-amber-400 transition">
+          <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=400&auto=format&fit=crop" class="h-28 w-full object-cover">
+          <div class="p-3">
+            <span class="text-[10px] text-amber-400 font-bold uppercase block">Garena</span>
+            <h3 class="font-bold text-white text-sm">Free Fire</h3>
+            <span class="text-[11px] text-slate-400">Desde $1.15</span>
           </div>
         </div>
 
         <!-- Roblox -->
-        <div onclick="selectGame('roblox')" class="group relative bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-red-500 transition duration-300 cursor-pointer shadow-lg">
-          <div class="h-44 relative overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Roblox">
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
-            <span class="absolute top-3 right-3 bg-red-500/90 text-white text-[10px] font-black uppercase px-2 py-0.5 rounded-md">Robux</span>
-            <div class="absolute bottom-3 left-4">
-              <span class="text-[10px] uppercase font-bold text-red-400 block tracking-wider">Roblox Corp</span>
-              <h3 class="font-brand text-3xl font-bold text-white tracking-wide leading-none">ROBLOX</h3>
-            </div>
-          </div>
-          <div class="p-4 flex items-center justify-between border-t border-slate-800/80">
-            <span class="text-xs text-slate-400">Desde <strong class="text-white">$1.20</strong></span>
-            <span class="w-8 h-8 rounded-full bg-slate-800 group-hover:bg-red-500 group-hover:text-white flex items-center justify-center text-xs transition">
-              <i class="fa-solid fa-arrow-right"></i>
-            </span>
+        <div onclick="selectGame('roblox')" class="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden cursor-pointer hover:border-red-400 transition">
+          <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=400&auto=format&fit=crop" class="h-28 w-full object-cover">
+          <div class="p-3">
+            <span class="text-[10px] text-red-400 font-bold uppercase block">Roblox</span>
+            <h3 class="font-bold text-white text-sm">Robux</h3>
+            <span class="text-[11px] text-slate-400">Desde $1.20</span>
           </div>
         </div>
 
         <!-- COD Mobile -->
-        <div onclick="selectGame('codm')" class="group relative bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-cyan-500 transition duration-300 cursor-pointer shadow-lg">
-          <div class="h-44 relative overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="COD Mobile">
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
-            <span class="absolute top-3 right-3 bg-cyan-500/90 text-slate-950 text-[10px] font-black uppercase px-2 py-0.5 rounded-md">CP Oficial</span>
-            <div class="absolute bottom-3 left-4">
-              <span class="text-[10px] uppercase font-bold text-cyan-400 block tracking-wider">Activision</span>
-              <h3 class="font-brand text-3xl font-bold text-white tracking-wide leading-none">COD MOBILE</h3>
-            </div>
-          </div>
-          <div class="p-4 flex items-center justify-between border-t border-slate-800/80">
-            <span class="text-xs text-slate-400">Desde <strong class="text-white">$1.10</strong></span>
-            <span class="w-8 h-8 rounded-full bg-slate-800 group-hover:bg-cyan-400 group-hover:text-black flex items-center justify-center text-xs transition">
-              <i class="fa-solid fa-arrow-right"></i>
-            </span>
+        <div onclick="selectGame('codm')" class="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden cursor-pointer hover:border-cyan-400 transition">
+          <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=400&auto=format&fit=crop" class="h-28 w-full object-cover">
+          <div class="p-3">
+            <span class="text-[10px] text-cyan-400 font-bold uppercase block">Activision</span>
+            <h3 class="font-bold text-white text-sm">COD Mobile</h3>
+            <span class="text-[11px] text-slate-400">Desde $1.10</span>
           </div>
         </div>
 
         <!-- Brawl Stars -->
-        <div onclick="selectGame('brawl')" class="group relative bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-yellow-400 transition duration-300 cursor-pointer shadow-lg">
-          <div class="h-44 relative overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1612287233207-6b455b85a1a1?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Brawl Stars">
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
-            <span class="absolute top-3 right-3 bg-yellow-400/90 text-slate-950 text-[10px] font-black uppercase px-2 py-0.5 rounded-md">Gemas</span>
-            <div class="absolute bottom-3 left-4">
-              <span class="text-[10px] uppercase font-bold text-yellow-400 block tracking-wider">Supercell</span>
-              <h3 class="font-brand text-3xl font-bold text-white tracking-wide leading-none">BRAWL STARS</h3>
-            </div>
-          </div>
-          <div class="p-4 flex items-center justify-between border-t border-slate-800/80">
-            <span class="text-xs text-slate-400">Desde <strong class="text-white">$2.20</strong></span>
-            <span class="w-8 h-8 rounded-full bg-slate-800 group-hover:bg-yellow-400 group-hover:text-black flex items-center justify-center text-xs transition">
-              <i class="fa-solid fa-arrow-right"></i>
-            </span>
+        <div onclick="selectGame('brawl')" class="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden cursor-pointer hover:border-yellow-400 transition">
+          <img src="https://images.unsplash.com/photo-1612287233207-6b455b85a1a1?q=80&w=400&auto=format&fit=crop" class="h-28 w-full object-cover">
+          <div class="p-3">
+            <span class="text-[10px] text-yellow-400 font-bold uppercase block">Supercell</span>
+            <h3 class="font-bold text-white text-sm">Brawl Stars</h3>
+            <span class="text-[11px] text-slate-400">Desde $2.20</span>
           </div>
         </div>
-
       </div>
     </section>
 
-    <!-- ==================== VISTA 2: INTERFAZ DINÁMICA DEL JUEGO ==================== -->
+    <!-- VISTA SUB-PÁGINA JUEGO -->
     <section id="view-game" class="hidden">
-      <!-- BOTÓN VOLVER -->
-      <button onclick="navigate('home')" class="mb-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-xs font-bold text-slate-400 hover:text-white transition">
-        <i class="fa-solid fa-arrow-left"></i> Volver al Catálogo
+      <button onclick="navigate('home')" class="mb-3 text-xs text-slate-400 hover:text-white font-bold flex items-center gap-1">
+        <i class="fa-solid fa-arrow-left"></i> Volver a Juegos
       </button>
 
-      <!-- PORTADA DINÁMICA -->
-      <div class="relative overflow-hidden rounded-3xl h-44 sm:h-52 mb-6 border border-slate-800 shadow-xl">
-        <img id="game-banner-img" src="" class="w-full h-full object-cover" alt="Game Banner">
-        <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/80 to-transparent"></div>
-        <div class="absolute inset-0 p-6 flex flex-col justify-end">
-          <span id="game-badge" class="text-[10px] uppercase font-black px-2.5 py-0.5 rounded-md w-fit mb-1"></span>
-          <h2 id="game-title" class="font-brand text-4xl sm:text-6xl font-bold uppercase text-white leading-none"></h2>
-          <p id="game-desc" class="text-xs text-slate-300 max-w-md mt-1"></p>
-        </div>
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 mb-4">
+        <h2 id="gameTitle" class="text-2xl font-black text-white uppercase"></h2>
+        <p id="gameDesc" class="text-xs text-slate-400"></p>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-
-        <!-- PASO 1: PAQUETES (COLUMNA IZQUIERDA) -->
-        <div class="lg:col-span-2 space-y-4">
-          <div class="flex items-center justify-between border-b border-slate-800 pb-2">
-            <div class="flex items-center gap-2">
-              <span class="w-6 h-6 rounded-full bg-amber-400 text-slate-950 text-xs font-black flex items-center justify-center">1</span>
-              <h3 class="text-xs uppercase font-extrabold tracking-wider text-white">Selecciona tu Paquete</h3>
-            </div>
-            <span class="text-[11px] text-slate-400">Precios en USD y Bs.</span>
-          </div>
-          <div id="packages-container" class="grid grid-cols-2 sm:grid-cols-3 gap-3"></div>
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <!-- Paquetes -->
+        <div class="lg:col-span-2">
+          <h3 class="text-xs font-bold text-slate-400 uppercase mb-2">1. Selecciona Paquete</h3>
+          <div id="packagesList" class="grid grid-cols-2 gap-2"></div>
         </div>
 
-        <!-- PASO 2 Y 3: DATOS Y PAGO (COLUMNA DERECHA) -->
-        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-5 shadow-2xl h-fit sticky top-20">
-          
-          <form id="checkoutForm" class="space-y-4">
-            
-            <!-- RESUMEN DEL PAQUETE -->
-            <div class="bg-slate-950 border border-slate-800 rounded-2xl p-3.5 flex items-center justify-between">
-              <div>
-                <span class="text-[9px] text-slate-400 uppercase font-black block tracking-wider">Paquete Activo</span>
-                <span id="summary-pack" class="text-xs sm:text-sm font-bold text-white">--</span>
-              </div>
-              <div class="text-right">
-                <span id="summary-price" class="text-base sm:text-lg font-black text-amber-400 font-mono block">--</span>
-                <span id="summary-bs" class="text-[10px] text-slate-400 font-mono font-bold block">--</span>
-              </div>
+        <!-- Formulario -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 h-fit">
+          <form id="payForm" class="space-y-3">
+            <div class="bg-slate-950 border border-slate-800 rounded-xl p-3 flex justify-between items-center">
+              <span id="sumPack" class="text-xs font-bold text-white">--</span>
+              <span id="sumPrice" class="text-sm font-black text-amber-400 font-mono">--</span>
             </div>
 
-            <!-- PASO 2: ID DEL CLIENTE -->
             <div>
-              <div class="flex items-center gap-2 mb-1.5">
-                <span class="w-5 h-5 rounded-full bg-amber-400 text-slate-950 text-[10px] font-black flex items-center justify-center">2</span>
-                <label id="input-label-id" class="text-xs font-bold text-slate-300 uppercase tracking-wider">ID de Jugador</label>
-              </div>
-              <input type="text" id="playerId" placeholder="Ej: 2948104820" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-amber-400" required>
+              <label id="idLabel" class="block text-[11px] font-bold text-slate-400 uppercase mb-1">ID</label>
+              <input type="text" id="playerId" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2 text-sm text-white focus:outline-none focus:border-amber-400" required>
             </div>
 
-            <!-- PASO 3: PAGO -->
             <div>
-              <div class="flex items-center gap-2 mb-1.5">
-                <span class="w-5 h-5 rounded-full bg-amber-400 text-slate-950 text-[10px] font-black flex items-center justify-center">3</span>
-                <label class="text-xs font-bold text-slate-300 uppercase tracking-wider">Método de Pago</label>
-              </div>
-              <select id="paymentMethod" onchange="updatePaymentDetails()" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-amber-400" required>
-                <option value="Pago Móvil">🇻🇪 Pago Móvil (Venezuela)</option>
-                <option value="Binance Pay">🟡 Binance Pay (USDT)</option>
+              <label class="block text-[11px] font-bold text-slate-400 uppercase mb-1">Método de Pago</label>
+              <select id="payMethod" onchange="updatePayInfo()" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2 text-sm text-white focus:outline-none focus:border-amber-400">
+                <option value="Pago Móvil">🇻🇪 Pago Móvil</option>
+                <option value="Binance Pay">🟡 Binance Pay</option>
                 <option value="Zinli">🟣 Zinli</option>
-                <option value="Wally">🔵 Wally</option>
               </select>
             </div>
 
-            <!-- CAJA DE DATOS BANCARIOS -->
-            <div id="paymentInstructions" class="bg-slate-950 border border-slate-800/80 rounded-xl p-3 text-xs space-y-1">
-              <span class="text-[10px] font-black text-amber-400 uppercase block">Cuentas Pago Móvil:</span>
-              <p class="text-slate-300">Banco: <strong>Banesco (0134)</strong></p>
-              <p class="text-slate-300">Teléfono: <strong>0412-0000000</strong></p>
-              <p class="text-slate-300">Cédula: <strong>V-00.000.000</strong></p>
+            <div id="payInfoBox" class="bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-[11px] text-slate-300">
+              <p>Banco: <strong>Banesco (0134)</strong></p>
+              <p>Tel: <strong>0412-0000000</strong></p>
+              <p>CI: <strong>V-00000000</strong></p>
             </div>
 
-            <!-- REFERENCIA -->
             <div>
-              <label class="block text-[11px] font-bold text-slate-300 uppercase mb-1">Referencia / Hash de Pago</label>
-              <input type="text" id="reference" placeholder="Últimos 6 dígitos o Comprobante" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-amber-400" required>
+              <label class="block text-[11px] font-bold text-slate-400 uppercase mb-1">Referencia</label>
+              <input type="text" id="refInput" placeholder="Últimos 6 dígitos" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2 text-sm text-white focus:outline-none focus:border-amber-400" required>
             </div>
 
-            <!-- CONTACTO WHATSAPP -->
             <div>
-              <label class="block text-[11px] font-bold text-slate-300 uppercase mb-1">WhatsApp del Cliente</label>
-              <input type="text" id="contact" placeholder="+58 412..." class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-amber-400" required>
+              <label class="block text-[11px] font-bold text-slate-400 uppercase mb-1">Tu WhatsApp</label>
+              <input type="text" id="phoneInput" placeholder="+58 412..." class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2 text-sm text-white focus:outline-none focus:border-amber-400" required>
             </div>
 
-            <!-- BOTÓN ENVIAR -->
-            <button type="submit" id="btnSubmit" class="w-full bg-gradient-to-r from-amber-500 to-yellow-400 hover:from-amber-400 text-slate-950 font-black py-3 px-4 rounded-xl transition duration-150 flex items-center justify-center gap-2 shadow-lg shadow-amber-500/20 active:scale-95">
-              <span>ENVIAR TICKET A TELEGRAM</span>
-              <i class="fa-solid fa-bolt"></i>
+            <button type="submit" id="btnSubmit" class="w-full bg-amber-400 hover:bg-amber-300 text-black font-black py-2.5 rounded-xl text-xs uppercase tracking-wider transition">
+              Confirmar y Enviar Ticket
             </button>
           </form>
 
-          <!-- TICKET COMPLETADO -->
-          <div id="ticketSuccess" class="hidden text-center py-6">
-            <div class="w-14 h-14 bg-amber-500/10 text-amber-400 border border-amber-500/20 rounded-2xl flex items-center justify-center mx-auto mb-3">
-              <i class="fa-solid fa-check text-2xl"></i>
-            </div>
-            <h4 class="font-brand text-3xl font-bold uppercase text-white leading-none">¡ORDEN CREADA!</h4>
-            <p class="text-xs text-slate-400 my-2">Tu pedido ha sido notificado al operador vía Telegram y guardado en tu historial.</p>
-            <div class="bg-slate-950 border border-slate-800 rounded-xl p-3 my-3">
-              <span class="text-[10px] uppercase font-bold text-slate-500 block">Número de Ticket</span>
-              <span id="ticketDisplay" class="font-mono text-xl font-black text-amber-400"></span>
-            </div>
-            <button onclick="resetAndGoHome()" class="w-full bg-slate-800 hover:bg-slate-700 text-xs font-bold uppercase py-2.5 rounded-xl transition">
-              Hacer otra recarga
-            </button>
+          <div id="ticketOk" class="hidden text-center py-4">
+            <i class="fa-solid fa-check text-amber-400 text-3xl mb-2"></i>
+            <h4 class="font-bold text-white text-sm uppercase">¡Ticket Creado!</h4>
+            <span id="ticketIdView" class="font-mono text-lg font-bold text-amber-400 block my-1"></span>
+            <p class="text-xs text-slate-400 mb-3">Notificado a Telegram.</p>
+            <button onclick="navigate('home')" class="w-full bg-slate-800 text-xs py-2 rounded-xl text-white">Volver</button>
           </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ==================== VISTA 3: HISTORIAL & CLIENTE FRECUENTE ==================== -->
-    <section id="view-profile" class="hidden max-w-2xl mx-auto">
-      <button onclick="navigate('home')" class="mb-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-xs font-bold text-slate-400 hover:text-white transition">
-        <i class="fa-solid fa-arrow-left"></i> Volver a la Tienda
-      </button>
-
-      <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-xl mb-6">
-        <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-4">
-          <div class="flex items-center gap-3">
-            <div class="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-400 border border-amber-500/20 flex items-center justify-center text-xl">
-              <i class="fa-solid fa-crown"></i>
-            </div>
-            <div>
-              <h2 id="profileNameDisplay" class="text-lg font-bold text-white">Cliente Power</h2>
-              <p id="profilePhoneDisplay" class="text-xs text-slate-400">+58...</p>
-            </div>
-          </div>
-          <button onclick="logoutUser()" class="text-xs text-rose-400 hover:text-rose-300 font-bold">
-            Cerrar Sesión
-          </button>
-        </div>
-
-        <div class="flex items-center justify-between mb-4">
-          <h3 class="text-xs uppercase font-extrabold tracking-wider text-slate-300 flex items-center gap-2">
-            <i class="fa-solid fa-clock-rotate-left text-amber-400"></i> Historial de Compras
-          </h3>
-          <span id="orderCountBadge" class="text-[10px] bg-slate-800 text-slate-400 px-2 py-0.5 rounded-full font-bold">0 pedidos</span>
-        </div>
-
-        <div id="ordersHistoryList" class="space-y-3">
-          <p class="text-xs text-slate-500 text-center py-6">Aún no has realizado recargas con esta cuenta.</p>
         </div>
       </div>
     </section>
 
+    <!-- VISTA PERFIL / HISTORIAL -->
+    <section id="view-profile" class="hidden max-w-lg mx-auto">
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 mb-4 flex justify-between items-center">
+        <div>
+          <h2 id="profName" class="font-bold text-white text-base">Cliente VIP</h2>
+          <p id="profPhone" class="text-xs text-slate-400"></p>
+        </div>
+        <button onclick="logout()" class="text-xs text-rose-400 font-bold">Cerrar Sesión</button>
+      </div>
+
+      <h3 class="text-xs font-bold text-slate-400 uppercase mb-2">Historial de Recargas</h3>
+      <div id="historyList" class="space-y-2"></div>
+    </section>
   </main>
-
-  <!-- ==================== MODAL 1: LOGIN / REGISTRO ==================== -->
-  <div id="authModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-    <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 max-w-sm w-full shadow-2xl relative">
-      <button onclick="closeModal('authModal')" class="absolute top-4 right-4 text-slate-500 hover:text-white">
-        <i class="fa-solid fa-xmark text-lg"></i>
-      </button>
-
-      <div class="text-center mb-5">
-        <div class="w-12 h-12 rounded-2xl bg-amber-400/10 text-amber-400 flex items-center justify-center mx-auto mb-2 text-xl">
-          <i class="fa-solid fa-user-check"></i>
-        </div>
-        <h3 class="font-brand text-3xl font-bold uppercase text-white">Club Cliente Frecuente</h3>
-        <p class="text-xs text-slate-400">Guarda tus recargas e ingresa más rápido en tus próximas compras.</p>
-      </div>
-
-      <form id="authForm" class="space-y-3">
-        <div>
-          <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Tu Nombre o Alias</label>
-          <input type="text" id="authName" placeholder="Ej: Alberto" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-amber-400" required>
-        </div>
-        <div>
-          <label class="block text-xs font-bold text-slate-300 uppercase mb-1">WhatsApp / Teléfono</label>
-          <input type="text" id="authPhone" placeholder="+58 412..." class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-amber-400" required>
-        </div>
-        <button type="submit" class="w-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-black py-2.5 rounded-xl text-xs uppercase tracking-wider transition mt-2">
-          Guardar y Continuar
-        </button>
+  <!-- MODAL INGRESO USUARIO -->
+  <div id="userModal" class="fixed inset-0 bg-black/80 flex items-center justify-center p-4 hidden z-50">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 max-w-xs w-full">
+      <h3 class="font-bold text-white text-center mb-3">Club Cliente Frecuente</h3>
+      <form id="userForm" class="space-y-3">
+        <input type="text" id="regName" placeholder="Tu Nombre" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2 text-xs text-white" required>
+        <input type="text" id="regPhone" placeholder="Tu WhatsApp (+58...)" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2 text-xs text-white" required>
+        <button type="submit" class="w-full bg-amber-400 text-black font-bold py-2 rounded-xl text-xs uppercase">Guardar</button>
+        <button type="button" onclick="closeModal('userModal')" class="w-full text-slate-400 text-xs">Cancelar</button>
       </form>
     </div>
   </div>
 
-  <!-- ==================== MODAL 2: CALCULADORA DE TASA USDT ==================== -->
-  <div id="calculatorModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-    <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 max-w-sm w-full shadow-2xl relative">
-      <button onclick="closeModal('calculatorModal')" class="absolute top-4 right-4 text-slate-500 hover:text-white">
-        <i class="fa-solid fa-xmark text-lg"></i>
-      </button>
-
-      <div class="text-center mb-4">
-        <div class="w-12 h-12 rounded-2xl bg-amber-400/10 text-amber-400 flex items-center justify-center mx-auto mb-2 text-xl">
-          <i class="fa-solid fa-calculator"></i>
+  <!-- MODAL CALCULADORA -->
+  <div id="calcModal" class="fixed inset-0 bg-black/80 flex items-center justify-center p-4 hidden z-50">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 max-w-xs w-full">
+      <h3 class="font-bold text-white text-center mb-2">Calculadora USDT a Bs</h3>
+      <div class="space-y-2">
+        <label class="text-[10px] text-slate-400 uppercase">Tasa Bs/USDT:</label>
+        <input type="number" id="customRate" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2 text-xs text-amber-400 font-mono font-bold" value="950.00">
+        <button onclick="setTasa()" class="w-full bg-slate-800 text-xs py-1.5 rounded-lg text-white font-bold">Fijar Tasa</button>
+        <label class="text-[10px] text-slate-400 uppercase block mt-2">Dólares ($):</label>
+        <input type="number" id="calcUsd" oninput="calcBs()" placeholder="Ej: 5" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2 text-xs text-white font-mono">
+        <div class="p-3 bg-amber-500/10 border border-amber-500/20 rounded-xl text-center mt-2">
+          <span class="text-[10px] text-amber-400 block font-bold">TOTAL EN BOLÍVARES:</span>
+          <span id="calcResult" class="text-lg font-black text-amber-400 font-mono">Bs. 0.00</span>
         </div>
-        <h3 class="font-brand text-3xl font-bold uppercase text-white">Calculadora USDT / Bs.</h3>
-        <p class="text-xs text-slate-400">Conversor oficial de tasa a Bolívares (VES)</p>
-      </div>
-
-      <div class="space-y-3">
-        <!-- Ajuste de tasa -->
-        <div class="bg-slate-950 border border-slate-800 rounded-xl p-3">
-          <label class="block text-[10px] uppercase font-bold text-slate-400 mb-1">Tasa de cambio USDT (Bs.):</label>
-          <div class="flex items-center gap-2">
-            <input type="number" id="calcExchangeRateInput" step="0.01" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-sm text-amber-400 font-mono font-bold focus:outline-none focus:border-amber-400" value="950.00">
-            <button onclick="applyCustomRate()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 rounded-lg text-xs font-bold text-white">Fijar</button>
-          </div>
-        </div>
-
-        <!-- Conversión -->
-        <div>
-          <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Monto en Dólares / USDT ($)</label>
-          <input type="number" id="calcUsdInput" oninput="runCalculator()" placeholder="Ej: 5.50" step="0.1" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-amber-400">
-        </div>
-
-        <div class="bg-amber-500/10 border border-amber-500/30 rounded-2xl p-4 text-center mt-3">
-          <span class="text-[10px] text-amber-300 uppercase font-black block tracking-wider mb-1">Total en Bolívares:</span>
-          <span id="calcBsResult" class="text-2xl font-mono font-black text-amber-400">Bs. 0.00</span>
-        </div>
-
-        <button onclick="fetchLatestRate()" class="w-full py-2 bg-slate-800 hover:bg-slate-700 rounded-xl text-[11px] font-bold text-slate-300 flex items-center justify-center gap-2 transition">
-          <i class="fa-solid fa-arrows-rotate"></i> Actualizar con tasa online
-        </button>
+        <button onclick="closeModal('calcModal')" class="w-full text-slate-400 text-xs pt-2">Cerrar</button>
       </div>
     </div>
   </div>
 
   <script>
-    // ====================================================
-    // ⚙️ CONFIGURACIÓN TELEGRAM (OFUSCADO SEGURO GITHUB)
-    // ====================================================
+    // DATOS DE TELEGRAM
     const _p1 = "8820908977:";
     const _p2 = "AAEYmoIhzajWmFER";
     const _p3 = "HZ6qRUPOh7f9RxjSQlY";
     const BOT_TOKEN = _p1 + _p2 + _p3;
     const CHAT_ID = "6695879116";
 
-    // ESTADO GLOBAL: TASA USDT REFERENCIA
-    let CURRENT_USDT_RATE = 950.00;
+    let TASA = 950.00;
+    let selectedGame = null;
+    let selectedPkg = null;
 
-    // CATÁLOGO DE JUEGOS Y PAQUETES
-    const GAMES_DATA = {
+    const GAMES = {
       freefire: {
-        title: "FREE FIRE",
-        badge: "Diamantes Garena",
-        badgeBg: "bg-orange-500 text-black",
-        banner: "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1200&auto=format&fit=crop",
+        title: "Free Fire",
+        desc: "Diamantes oficiales por ID",
         idLabel: "ID de Jugador (UID)",
-        idPlaceholder: "Ej: 1984209482",
-        desc: "Diamantes directos a tu cuenta vía ID.",
-        icon: "fa-gem",
-        packages: [
-          { name: "100 Diamantes", bonus: "+10 Bono", priceUsd: 1.15 },
-          { name: "310 Diamantes", bonus: "+31 Bono", priceUsd: 3.40 },
-          { name: "520 Diamantes", bonus: "+52 Bono", priceUsd: 5.50 },
-          { name: "1,060 Diamantes", bonus: "+106 Bono", priceUsd: 10.80 },
-          { name: "Tarjeta Semanal", bonus: "450 Total", priceUsd: 2.20 },
-          { name: "Tarjeta Mensual", bonus: "2600 Total", priceUsd: 10.50 }
+        pkgs: [
+          { name: "100 + 10 Diamantes", price: 1.15 },
+          { name: "310 + 31 Diamantes", price: 3.40 },
+          { name: "520 + 52 Diamantes", price: 5.50 },
+          { name: "1,060 + 106 Diamantes", price: 10.80 },
+          { name: "Tarjeta Semanal", price: 2.20 },
+          { name: "Tarjeta Mensual", price: 10.50 }
         ]
       },
       roblox: {
-        title: "ROBLOX",
-        badge: "Robux 100% Legales",
-        badgeBg: "bg-red-500 text-white",
-        banner: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1200&auto=format&fit=crop",
-        idLabel: "Nombre de Usuario (Username)",
-        idPlaceholder: "Ej: TuUsuarioRoblox",
-        desc: "Robux entregados directamente a tu perfil.",
-        icon: "fa-cube",
-        packages: [
-          { name: "80 Robux", bonus: "Entrega Directa", priceUsd: 1.20 },
-          { name: "400 Robux", bonus: "Más Vendido", priceUsd: 5.20 },
-          { name: "800 Robux", bonus: "Pack Gamer", priceUsd: 10.00 },
-          { name: "1,700 Robux", bonus: "Pro Pack", priceUsd: 20.50 },
-          { name: "4,500 Robux", bonus: "Mega Pack", priceUsd: 52.00 }
+        title: "Roblox",
+        desc: "Robux 100% legales a tu Usuario",
+        idLabel: "Usuario de Roblox",
+        pkgs: [
+          { name: "80 Robux", price: 1.20 },
+          { name: "400 Robux", price: 5.20 },
+          { name: "800 Robux", price: 10.00 },
+          { name: "1,700 Robux", price: 20.50 }
         ]
       },
       codm: {
-        title: "COD MOBILE",
-        badge: "Puntos CP Oficiales",
-        badgeBg: "bg-cyan-500 text-black",
-        banner: "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=1200&auto=format&fit=crop",
+        title: "COD Mobile",
+        desc: "Puntos CP con UID",
         idLabel: "Player UID",
-        idPlaceholder: "Ej: 674829104829182",
-        desc: "Puntos COD para Pases de Batalla y Ruletas.",
-        icon: "fa-crosshairs",
-        packages: [
-          { name: "80 CP", bonus: "Pack Básico", priceUsd: 1.10 },
-          { name: "420 CP", bonus: "Pase Batalla", priceUsd: 5.40 },
-          { name: "880 CP", bonus: "Ruletas", priceUsd: 10.80 },
-          { name: "2,400 CP", bonus: "Armamento", priceUsd: 26.00 }
+        pkgs: [
+          { name: "80 CP", price: 1.10 },
+          { name: "420 CP", price: 5.40 },
+          { name: "880 CP", price: 10.80 }
         ]
       },
       brawl: {
-        title: "BRAWL STARS",
-        badge: "Supercell ID",
-        badgeBg: "bg-yellow-400 text-black",
-        banner: "https://images.unsplash.com/photo-1612287233207-6b455b85a1a1?q=80&w=1200&auto=format&fit=crop",
+        title: "Brawl Stars",
+        desc: "Gemas y Brawl Pass",
         idLabel: "Player Tag (#TAG)",
-        idPlaceholder: "Ej: #9V8Q2PLY",
-        desc: "Gemas y Brawl Pass con activación directa.",
-        icon: "fa-star",
-        packages: [
-          { name: "30 Gemas", bonus: "Oferta", priceUsd: 2.20 },
-          { name: "80 Gemas", bonus: "Popular", priceUsd: 5.30 },
-          { name: "170 Gemas", bonus: "Brawl Pass", priceUsd: 10.50 },
-          { name: "360 Gemas", bonus: "Ultra Pack", priceUsd: 21.00 }
+        pkgs: [
+          { name: "30 Gemas", price: 2.20 },
+          { name: "80 Gemas", price: 5.30 },
+          { name: "170 Gemas", price: 10.50 }
         ]
       }
     };
 
-    let currentGameKey = null;
-    let selectedPackage = null;
-
-    // INICIALIZACIÓN
-    document.addEventListener('DOMContentLoaded', () => {
-      checkActiveUser();
-      updateRateDisplays();
-      fetchLatestRate();
-    });
-
-    // SISTEMA DE NAVEGACIÓN
-    function navigate(view) {
+    function navigate(v) {
       document.getElementById('view-home').classList.add('hidden');
       document.getElementById('view-game').classList.add('hidden');
       document.getElementById('view-profile').classList.add('hidden');
-
-      if (view === 'home') document.getElementById('view-home').classList.remove('hidden');
-      if (view === 'game') document.getElementById('view-game').classList.remove('hidden');
-      if (view === 'profile') {
-        renderOrderHistory();
+      if (v === 'home') document.getElementById('view-home').classList.remove('hidden');
+      if (v === 'game') document.getElementById('view-game').classList.remove('hidden');
+      if (v === 'profile') {
+        renderHistory();
         document.getElementById('view-profile').classList.remove('hidden');
       }
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // MODALES
     function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
     function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
 
-    // GESTIÓN DE TASA & CALCULADORA
-    function updateRateDisplays() {
-      document.getElementById('liveRateDisplay').innerText = `Bs. ${CURRENT_USDT_RATE.toFixed(2)}`;
-      document.getElementById('calcExchangeRateInput').value = CURRENT_USDT_RATE.toFixed(2);
-      if (currentGameKey && selectedPackage) {
-        updateSummaryBox();
+    function setTasa() {
+      const v = parseFloat(document.getElementById('customRate').value);
+      if (v) {
+        TASA = v;
+        document.getElementById('tasaDisplay').innerText = "Bs. " + TASA.toFixed(2);
+        if (selectedGame) selectGame(selectedGame);
+        alert("Tasa fijada en Bs. " + TASA);
       }
     }
 
-    function applyCustomRate() {
-      const val = parseFloat(document.getElementById('calcExchangeRateInput').value);
-      if (val && val > 0) {
-        CURRENT_USDT_RATE = val;
-        updateRateDisplays();
-        if (currentGameKey) selectGame(currentGameKey);
-        alert('Tasa actualizada correctamente.');
-      }
+    function calcBs() {
+      const usd = parseFloat(document.getElementById('calcUsd').value) || 0;
+      document.getElementById('calcResult').innerText = "Bs. " + (usd * TASA).toLocaleString('es-VE', { minimumFractionDigits: 2 });
     }
 
-    function runCalculator() {
-      const usd = parseFloat(document.getElementById('calcUsdInput').value) || 0;
-      const bs = usd * CURRENT_USDT_RATE;
-      document.getElementById('calcBsResult').innerText = `Bs. ${bs.toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-    }
+    function selectGame(key) {
+      selectedGame = key;
+      const g = GAMES[key];
+      document.getElementById('gameTitle').innerText = g.title;
+      document.getElementById('gameDesc').innerText = g.desc;
+      document.getElementById('idLabel').innerText = g.idLabel;
 
-    async function fetchLatestRate() {
-      try {
-        const alt = await fetch('https://open.er-api.com/v6/latest/USD');
-        const data = await alt.json();
-        if (data && data.rates && data.rates.VES) {
-          CURRENT_USDT_RATE = data.rates.VES;
-          updateRateDisplays();
-        }
-      } catch (err) {
-        console.log('Usando tasa predeterminada:', CURRENT_USDT_RATE);
-      }
-    }
+      const user = JSON.parse(localStorage.getItem('pw_user'));
+      if (user && user.phone) document.getElementById('phoneInput').value = user.phone;
 
-    // SELECCIÓN DEL JUEGO
-    function selectGame(gameKey) {
-      currentGameKey = gameKey;
-      const game = GAMES_DATA[gameKey];
-
-      document.getElementById('game-title').innerText = game.title;
-      document.getElementById('game-desc').innerText = game.desc;
-      document.getElementById('game-banner-img').src = game.banner;
-      document.getElementById('game-badge').innerText = game.badge;
-      document.getElementById('game-badge').className = `text-[10px] uppercase font-black px-2.5 py-0.5 rounded-md w-fit mb-1 ${game.badgeBg}`;
-
-      document.getElementById('input-label-id').innerText = game.idLabel;
-      document.getElementById('playerId').placeholder = game.idPlaceholder;
-
-      const activeUser = getActiveUser();
-      if (activeUser && activeUser.phone) {
-        document.getElementById('contact').value = activeUser.phone;
-      }
-
-      const container = document.getElementById('packages-container');
+      const container = document.getElementById('packagesList');
       container.innerHTML = '';
 
-      game.packages.forEach((pkg, i) => {
-        const bsPrice = (pkg.priceUsd * CURRENT_USDT_RATE).toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      g.pkgs.forEach((p, idx) => {
+        const bs = (p.price * TASA).toLocaleString('es-VE', { minimumFractionDigits: 2 });
         const card = document.createElement('div');
-        card.className = "pkg-card bg-slate-900 border border-slate-800 hover:border-amber-400/50 rounded-2xl p-3.5 cursor-pointer transition flex flex-col justify-between text-left relative overflow-hidden";
-        card.id = `pkg-${i}`;
-        card.onclick = () => choosePackage(pkg, `pkg-${i}`);
-
+        card.className = "bg-slate-950 border border-slate-800 rounded-xl p-2.5 cursor-pointer hover:border-amber-400";
+        card.id = `pkg-${idx}`;
+        card.onclick = () => {
+          selectedPkg = p;
+          document.querySelectorAll('#packagesList div').forEach(d => d.classList.remove('pkg-sel'));
+          card.classList.add('pkg-sel');
+          document.getElementById('sumPack').innerText = p.name;
+          document.getElementById('sumPrice').innerText = `$${p.price.toFixed(2)} (~Bs. ${bs})`;
+        };
         card.innerHTML = `
-          <div class="flex items-center justify-between mb-2">
-            <span class="w-8 h-8 rounded-xl bg-slate-800 flex items-center justify-center text-amber-400 text-sm">
-              <i class="fa-solid ${game.icon}"></i>
-            </span>
-            <span class="text-[9px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-slate-800 text-slate-400">${pkg.bonus}</span>
-          </div>
-          <div>
-            <span class="text-xs font-bold text-white block mb-1">${pkg.name}</span>
-            <span class="text-base font-black text-amber-400 font-mono block leading-none">$${pkg.priceUsd.toFixed(2)}</span>
-            <span class="text-[10px] text-slate-400 font-mono mt-1 block">~Bs. ${bsPrice}</span>
-          </div>
+          <span class="text-xs font-bold text-white block">${p.name}</span>
+          <span class="text-sm font-black text-amber-400 font-mono block">$${p.price.toFixed(2)}</span>
+          <span class="text-[10px] text-slate-500 font-mono">~Bs. ${bs}</span>
         `;
         container.appendChild(card);
       });
 
-      choosePackage(game.packages[0], 'pkg-0');
+      container.children[0].click();
       navigate('game');
     }
 
-    function choosePackage(pkg, elementId) {
-      selectedPackage = pkg;
-      document.querySelectorAll('.pkg-card').forEach(el => el.classList.remove('pkg-selected'));
-      const activeEl = document.getElementById(elementId);
-      if (activeEl) activeEl.classList.add('pkg-selected');
-      updateSummaryBox();
-    }
-
-    function updateSummaryBox() {
-      if (!selectedPackage) return;
-      const bs = (selectedPackage.priceUsd * CURRENT_USDT_RATE).toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-      document.getElementById('summary-pack').innerText = selectedPackage.name;
-      document.getElementById('summary-price').innerText = `$${selectedPackage.priceUsd.toFixed(2)}`;
-      document.getElementById('summary-bs').innerText = `~Bs. ${bs}`;
-    }
-
-    function updatePaymentDetails() {
-      const method = document.getElementById('paymentMethod').value;
-      const box = document.getElementById('paymentInstructions');
-
-      if (method === 'Pago Móvil') {
-        box.innerHTML = `
-          <span class="text-[10px] font-black text-amber-400 uppercase block">Cuentas Pago Móvil:</span>
-          <p class="text-slate-300">Banco: <strong>Banesco (0134)</strong></p>
-          <p class="text-slate-300">Teléfono: <strong>0412-0000000</strong></p>
-          <p class="text-slate-300">Cédula: <strong>V-00.000.000</strong></p>
-        `;
-      } else if (method === 'Binance Pay') {
-        box.innerHTML = `
-          <span class="text-[10px] font-black text-amber-400 uppercase block">Binance Pay:</span>
-          <p class="text-slate-300">Pay ID: <strong>99887766</strong></p>
-          <p class="text-slate-300">Moneda: <strong>USDT</strong></p>
-        `;
-      } else if (method === 'Zinli') {
-        box.innerHTML = `
-          <span class="text-[10px] font-black text-amber-400 uppercase block">Zinli:</span>
-          <p class="text-slate-300">Correo: <strong>pagos@powerstore.com</strong></p>
-        `;
+    function updatePayInfo() {
+      const m = document.getElementById('payMethod').value;
+      const box = document.getElementById('payInfoBox');
+      if (m === 'Pago Móvil') {
+        box.innerHTML = `<p>Banco: <strong>Banesco (0134)</strong></p><p>Tel: <strong>0412-0000000</strong></p><p>CI: <strong>V-00000000</strong></p>`;
+      } else if (m === 'Binance Pay') {
+        box.innerHTML = `<p>Binance Pay ID: <strong>99887766</strong></p><p>Moneda: <strong>USDT</strong></p>`;
       } else {
-        box.innerHTML = `
-          <span class="text-[10px] font-black text-amber-400 uppercase block">Wally:</span>
-          <p class="text-slate-300">ID / Correo: <strong>pagos@powerstore.com</strong></p>
-        `;
+        box.innerHTML = `<p>Zinli: <strong>pagos@powerstore.com</strong></p>`;
       }
     }
 
-    // ==========================================
-    // SISTEMA DE USUARIO & HISTORIAL (LOCAL)
-    // ==========================================
-    function getActiveUser() {
-      return JSON.parse(localStorage.getItem('power_store_user')) || null;
-    }
-
-    function checkActiveUser() {
-      const user = getActiveUser();
-      if (user) {
-        document.getElementById('userHeaderLabel').innerText = user.name;
-        document.getElementById('profileNameDisplay').innerText = user.name;
-        document.getElementById('profilePhoneDisplay').innerText = user.phone;
-      } else {
-        document.getElementById('userHeaderLabel').innerText = 'Ingresar';
-      }
-    }
-
-    function handleAuthClick() {
-      const user = getActiveUser();
-      if (user) {
+    // GESTIÓN USUARIO
+    function handleUserBtn() {
+      const u = JSON.parse(localStorage.getItem('pw_user'));
+      if (u) {
+        document.getElementById('profName').innerText = u.name;
+        document.getElementById('profPhone').innerText = u.phone;
         navigate('profile');
       } else {
-        openModal('authModal');
+        openModal('userModal');
       }
     }
 
-    document.getElementById('authForm').addEventListener('submit', (e) => {
+    document.getElementById('userForm').addEventListener('submit', (e) => {
       e.preventDefault();
-      const user = {
-        name: document.getElementById('authName').value,
-        phone: document.getElementById('authPhone').value
-      };
-      localStorage.setItem('power_store_user', JSON.stringify(user));
-      checkActiveUser();
-      closeModal('authModal');
-      alert(`¡Bienvenido al Club Power Store, ${user.name}!`);
+      const u = { name: document.getElementById('regName').value, phone: document.getElementById('regPhone').value };
+      localStorage.setItem('pw_user', JSON.stringify(u));
+      document.getElementById('userBtnText').innerText = u.name;
+      closeModal('userModal');
     });
 
-    function logoutUser() {
-      localStorage.removeItem('power_store_user');
-      checkActiveUser();
+    function logout() {
+      localStorage.removeItem('pw_user');
+      document.getElementById('userBtnText').innerText = 'Ingresar';
       navigate('home');
     }
 
-    function saveOrderToHistory(order) {
-      let orders = JSON.parse(localStorage.getItem('power_store_orders')) || [];
-      orders.unshift(order);
-      localStorage.setItem('power_store_orders', JSON.stringify(orders));
-    }
-
-    function renderOrderHistory() {
-      const orders = JSON.parse(localStorage.getItem('power_store_orders')) || [];
-      const container = document.getElementById('ordersHistoryList');
-      document.getElementById('orderCountBadge').innerText = `${orders.length} pedidos`;
-
-      if (orders.length === 0) {
-        container.innerHTML = `<p class="text-xs text-slate-500 text-center py-6">Aún no tienes tickets registrados en este dispositivo.</p>`;
+    function renderHistory() {
+      const list = JSON.parse(localStorage.getItem('pw_orders')) || [];
+      const cont = document.getElementById('historyList');
+      if (list.length === 0) {
+        cont.innerHTML = `<p class="text-xs text-slate-500 text-center py-4">No tienes órdenes registradas.</p>`;
         return;
       }
-
-      container.innerHTML = '';
-      orders.forEach(o => {
-        const item = document.createElement('div');
-        item.className = 'bg-slate-950 border border-slate-800 rounded-2xl p-3.5 flex items-center justify-between text-xs';
-        item.innerHTML = `
-          <div>
-            <div class="flex items-center gap-2 mb-1">
-              <span class="font-mono font-bold text-amber-400">${o.ticketId}</span>
-              <span class="bg-slate-800 text-slate-300 px-2 py-0.5 rounded text-[10px] font-bold">${o.game}</span>
+      cont.innerHTML = '';
+      list.forEach(o => {
+        cont.innerHTML += `
+          <div class="bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-xs flex justify-between">
+            <div>
+              <span class="font-mono text-amber-400 font-bold">${o.tk}</span> • <strong>${o.game}</strong>
+              <p class="text-slate-400">${o.pkg} - Ref: ${o.ref}</p>
             </div>
-            <p class="text-slate-400">${o.packageName} • Ref: <strong>${o.reference}</strong></p>
-            <span class="text-[10px] text-slate-500">${o.date}</span>
-          </div>
-          <div class="text-right font-mono font-bold text-white">
-            ${o.price}
+            <span class="font-bold text-white">${o.price}</span>
           </div>
         `;
-        container.appendChild(item);
       });
     }
 
-    // ==========================================
-    // ENVIAR ORDEN A TELEGRAM
-    // ==========================================
-    document.getElementById('checkoutForm').addEventListener('submit', async (e) => {
+    // ENVÍO DE TICKET
+    document.getElementById('payForm').addEventListener('submit', async (e) => {
       e.preventDefault();
       const btn = document.getElementById('btnSubmit');
       btn.disabled = true;
-      btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> <span>Enviando Orden...</span>`;
+      btn.innerText = "Enviando...";
 
-      const ticketId = '#TK-' + Math.floor(1000 + Math.random() * 9000);
-      const gameTitle = GAMES_DATA[currentGameKey].title;
-      const playerId = document.getElementById('playerId').value;
-      const paymentMethod = document.getElementById('paymentMethod').value;
-      const reference = document.getElementById('reference').value;
-      const contact = document.getElementById('contact').value;
-      const bsCalculated = (selectedPackage.priceUsd * CURRENT_USDT_RATE).toFixed(2);
+      const tk = '#TK-' + Math.floor(1000 + Math.random() * 9000);
+      const game = GAMES[selectedGame].title;
+      const pid = document.getElementById('playerId').value;
+      const m = document.getElementById('payMethod').value;
+      const ref = document.getElementById('refInput').value;
+      const ph = document.getElementById('phoneInput').value;
+      const bsMonto = (selectedPkg.price * TASA).toFixed(2);
 
-      const message = `⚡ *NUEVA ORDEN POWER STORE* ⚡\n\n` +
-                      `🎫 *Ticket:* \`${ticketId}\`\n` +
-                      `🎮 *Juego:* ${gameTitle}\n` +
-                      `📦 *Paquete:* ${selectedPackage.name} ($${selectedPackage.priceUsd} / ~Bs. ${bsCalculated})\n` +
-                      `🆔 *ID/User:* \`${playerId}\`\n` +
-                      `💳 *Método:* ${paymentMethod}\n` +
-                      `🧾 *Referencia:* \`${reference}\`\n` +
-                      `📱 *WhatsApp:* ${contact}\n\n` +
-                      `🕒 *Fecha:* ${new Date().toLocaleTimeString()} - ${new Date().toLocaleDateString()}`;
+      const msg = `⚡ *NUEVA ORDEN POWER STORE* ⚡\n\n` +
+                  `🎫 *Ticket:* \`${tk}\`\n` +
+                  `🎮 *Juego:* ${game}\n` +
+                  `📦 *Paquete:* ${selectedPkg.name} ($${selectedPkg.price} / ~Bs. ${bsMonto})\n` +
+                  `🆔 *ID:* \`${pid}\`\n` +
+                  `💳 *Método:* ${m}\n` +
+                  `🧾 *Ref:* \`${ref}\`\n` +
+                  `📱 *WhatsApp:* ${ph}`;
 
       try {
         const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            chat_id: CHAT_ID,
-            text: message,
-            parse_mode: 'Markdown'
-          })
+          body: JSON.stringify({ chat_id: CHAT_ID, text: msg, parse_mode: 'Markdown' })
         });
 
         if (res.ok) {
-          saveOrderToHistory({
-            ticketId,
-            game: gameTitle,
-            packageName: selectedPackage.name,
-            price: `$${selectedPackage.priceUsd.toFixed(2)}`,
-            reference: reference,
-            date: new Date().toLocaleDateString()
-          });
+          let orders = JSON.parse(localStorage.getItem('pw_orders')) || [];
+          orders.unshift({ tk, game, pkg: selectedPkg.name, price: `$${selectedPkg.price}`, ref });
+          localStorage.setItem('pw_orders', JSON.stringify(orders));
 
-          document.getElementById('checkoutForm').classList.add('hidden');
-          document.getElementById('ticketDisplay').innerText = ticketId;
-          document.getElementById('ticketSuccess').classList.remove('hidden');
+          document.getElementById('payForm').classList.add('hidden');
+          document.getElementById('ticketIdView').innerText = tk;
+          document.getElementById('ticketOk').classList.remove('hidden');
         } else {
-          alert('Error al conectar con Telegram.');
+          alert('Error al enviar ticket a Telegram.');
           btn.disabled = false;
-          btn.innerHTML = `<span>ENVIAR TICKET A TELEGRAM</span> <i class="fa-solid fa-bolt"></i>`;
+          btn.innerText = "Confirmar y Enviar Ticket";
         }
       } catch (err) {
-        alert('Error de conexión.');
+        alert('Error de red.');
         btn.disabled = false;
-        btn.innerHTML = `<span>ENVIAR TICKET A TELEGRAM</span> <i class="fa-solid fa-bolt"></i>`;
+        btn.innerText = "Confirmar y Enviar Ticket";
       }
     });
 
-    function resetAndGoHome() {
-      document.getElementById('checkoutForm').reset();
-      document.getElementById('checkoutForm').classList.remove('hidden');
-      document.getElementById('ticketSuccess').classList.add('hidden');
-      const btn = document.getElementById('btnSubmit');
-      btn.disabled = false;
-      btn.innerHTML = `<span>ENVIAR TICKET A TELEGRAM</span> <i class="fa-solid fa-bolt"></i>`;
-      navigate('home');
-    }
+    // Auto-login si ya existe
+    const savedUser = JSON.parse(localStorage.getItem('pw_user'));
+    if (savedUser) document.getElementById('userBtnText').innerText = savedUser.name;
   </script>
 </body>
 </html>
+
+    
