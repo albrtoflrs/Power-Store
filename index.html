@@ -1149,7 +1149,7 @@
     }
 
     // ENVÍO DE ORDEN + DATOS BANCARIOS EXACTOS A TELEGRAM
-    document.getElementById('payForm').addEventListener('submit', async (e) => {
+        document.getElementById('payForm').addEventListener('submit', async (e) => {
       e.preventDefault();
       const btn = document.getElementById('btnSubmit');
       const fileInput = document.getElementById('receiptFile');
@@ -1158,6 +1158,45 @@
         alert("Debes adjuntar la captura del comprobante de Pago Móvil.");
         return;
       }
+
+      btn.disabled = true;
+      btn.innerHTML = `<span class="material-symbols-outlined text-[18px] animate-spin">progress_activity</span><span>Enviando Orden Segura...</span>`;
+
+      const tk = '#TK-' + Math.floor(1000 + Math.random() * 9000);
+
+      try {
+        const res = await fetch('/api/send-order', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            game: GAMES_DATA[selectedGameKey].title,
+            package: selectedPkg.name,
+            price: selectedPkg.price,
+            playerId: document.getElementById('playerId').value,
+            phone: document.getElementById('phoneInput').value,
+            payerDoc: document.getElementById('payerDoc').value,
+            payerPhone: document.getElementById('payerPhone').value,
+            bank: document.getElementById('bankOrigin').value,
+            ref: document.getElementById('refInput').value
+          })
+        });
+
+        if (res.ok) {
+          document.getElementById('modalStep3').classList.add('hidden');
+          document.getElementById('ticketIdView').innerText = tk;
+          document.getElementById('ticketOk').classList.remove('hidden');
+        } else {
+          alert('Error al procesar la orden en el servidor.');
+          btn.disabled = false;
+          btn.innerHTML = `<span>Verificar y Enviar Ticket a Telegram</span>`;
+        }
+      } catch (err) {
+        alert('Error de conexión.');
+        btn.disabled = false;
+        btn.innerHTML = `<span>Verificar y Enviar Ticket a Telegram</span>`;
+      }
+    });
+
 
       btn.disabled = true;
       btn.innerHTML = `<span class="material-symbols-outlined text-[18px] animate-spin">progress_activity</span><span>Subiendo Comprobante...</span>`;
